@@ -1,1 +1,57 @@
-//
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+textarea {
+    resize: none;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $green;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.navbar-laravel {
+    border-bottom: 1px solid #e0e0e0;
+}
+.logo i {
+    font-size: 150px;
+    color: $green;
+}
+.logo-nav i {
+    font-size: 50px;
+    color: $green;
+}
+.btn-green {
+    background-color: $green;
+    color: $white;
+}
+.btn-green:hover {
+    background-color: $low-green;
+    color: $white;
+}
+.a-green {
+    color: $grey;
+}
+.a-green:hover {
+    color: $green !important;
+    text-decoration: none;
+}
+.font-16 {
+    font-size: 16px;
+}
+.green-font {
+    color: $green;
+}
+.grey-font {
+    color: $grey;
+}
+.font-20 {
+    font-size: 20px;
+}

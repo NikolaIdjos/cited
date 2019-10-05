@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
+
+/**
+ * Landing
+ */
+Route::get('/', 'HomeController@landing');
+/**
+ * Auth middleware
+ */
+Route::group(['middleware' => ['auth']], function () {
+    /**
+     * Quotes
+     */
+    Route::resource('/quotes', 'QuoteController')->only(['index']);
+    /**
+     * Users
+     */
+    Route::resource('/users', 'UserController')->only(['index']);
 });
