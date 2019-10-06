@@ -1,9 +1,12 @@
 <template>
     <div>
         <div class="container">
+            <div class="text-center my-5">
+                <h1 class="font-weight-bold green-font">Users</h1>
+            </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card mt-5">
+                    <div class="card">
                         <div class="card-header text-center font-weight-bold py-4">
                             <ul class="nav nav-pills custom-pills d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
