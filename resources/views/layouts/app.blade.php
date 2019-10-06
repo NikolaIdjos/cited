@@ -57,7 +57,7 @@
         </nav>
     @endauth
 
-    <main>
+    <main class="mb-5">
         @yield('content')
     </main>
 </div>

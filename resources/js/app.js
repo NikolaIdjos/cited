@@ -28,6 +28,10 @@ Vue.component('landing-page', require('./pages/landing/landing-page').default);
 Vue.component('quotes-index', require('./pages/admin/quotes/index').default);
 // Users
 Vue.component('users-index', require('./pages/admin/users/index').default);
+/**
+ * Components
+ */
+Vue.component('custom-pagination', require('./components/paginations/pagination').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

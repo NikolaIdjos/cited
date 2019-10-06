@@ -10,7 +10,7 @@
                         <div class="card-header text-center font-weight-bold py-4">
                             <ul class="nav nav-pills custom-pills d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a @click="getSubscribers" class="nav-link active" id="pills-subscribers-tab" data-toggle="pill" href="#pills-subscribers" role="tab" aria-controls="pills-subscribers" aria-selected="true">Subscribers</a>
+                                    <a class="nav-link active" id="pills-subscribers-tab" data-toggle="pill" href="#pills-subscribers" role="tab" aria-controls="pills-subscribers" aria-selected="true">Subscribers</a>
                                 </li>
                                 <li class="nav-item">
                                     <a @click="getUsers" class="nav-link" id="pills-admins-tab" data-toggle="pill" href="#pills-admins" role="tab" aria-controls="pills-admins" aria-selected="false">Admins</a>
@@ -18,6 +18,7 @@
                             </ul>
                         </div>
                         <div class="tab-content" id="pills-tabContent">
+                            <!--Subscribers pill-->
                             <div class="tab-pane fade show active" id="pills-subscribers" role="tabpanel" aria-labelledby="pills-subscribers-tab">
                                 <div class="pt-4 px-4">
                                     <div class="row d-flex justify-content-center">
@@ -60,7 +61,9 @@
                                         </table>
                                     </div>
                                 </div>
+                                <custom-pagination ref="customPagination" data-url="/admin/index/subscribers" v-on:pagination="pageChanged($event)"></custom-pagination>
                             </div>
+                            <!--Admins pill-->
                             <div class="tab-pane fade" id="pills-admins" role="tabpanel" aria-labelledby="pills-admins-tab">
                                 <div class="card-body pb-4 px-4">
                                     <div>
@@ -95,19 +98,7 @@
                 usersData: []
             }
         },
-        mounted() {
-            this.getSubscribers();
-        },
         methods: {
-            /**
-             * Get subscribers
-             */
-            getSubscribers() {
-                axios.get('/admin/index/subscribers').then((response) => {
-                    this.subscribersData = response.data.entity.data;
-                    console.log(this.subscribersData)
-                });
-            },
             /**
              * Get users
              */
@@ -116,6 +107,12 @@
                     this.usersData = response.data.entity;
                     console.log(this.usersData)
                 });
+            },
+            /**
+             * On page changed
+             */
+            pageChanged(data) {
+                this.subscribersData = data.data;
             },
         }
     }
