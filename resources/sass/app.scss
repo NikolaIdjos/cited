@@ -77,3 +77,10 @@ input:focus, textarea {
     border: 1px solid #38c172;
     border-radius: 6px;
 }
+.custom-pills .nav-item .nav-link {
+    color: $green;
+}
+.custom-pills .nav-item .active {
+    background: $green;
+    color: $white;
+}
