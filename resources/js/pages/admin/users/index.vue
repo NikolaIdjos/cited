@@ -10,10 +10,10 @@
                         <div class="card-header text-center font-weight-bold py-4">
                             <ul class="nav nav-pills custom-pills d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="pills-subscribers-tab" data-toggle="pill" href="#pills-subscribers" role="tab" aria-controls="pills-subscribers" aria-selected="true">Subscribers</a>
+                                    <a @click="getSubscribers" class="nav-link active" id="pills-subscribers-tab" data-toggle="pill" href="#pills-subscribers" role="tab" aria-controls="pills-subscribers" aria-selected="true">Subscribers</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-admins-tab" data-toggle="pill" href="#pills-admins" role="tab" aria-controls="pills-admins" aria-selected="false">Admins</a>
+                                    <a @click="getUsers" class="nav-link" id="pills-admins-tab" data-toggle="pill" href="#pills-admins" role="tab" aria-controls="pills-admins" aria-selected="false">Admins</a>
                                 </li>
                             </ul>
                         </div>
@@ -26,7 +26,16 @@
                                         </div>
                                         <div class="form-group col-12 col-md-4">
                                             <select class="form-control">
-                                                <option>1</option>
+                                                <option disabled selected hidden>Status</option>
+                                                <option>ACTIVE</option>
+                                                <option>INACTIVE</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-12 col-md-4">
+                                            <select class="form-control">
+                                                <option disabled selected hidden>Type</option>
+                                                <option>PAID</option>
+                                                <option>UNPAID</option>
                                             </select>
                                         </div>
                                     </div>
@@ -38,12 +47,14 @@
                                                 <th class="text-center">#</th>
                                                 <th class="text-center">EMAIL</th>
                                                 <th class="text-center">STATUS</th>
+                                                <th class="text-center">TYPE</th>
                                                 <th class="text-center">BAN</th>
                                             </tr>
-                                            <tr>
-                                                <td class="pt-3-half">1</td>
-                                                <td class="pt-3-half">email@demo.com</td>
-                                                <td class="pt-3-half">active</td>
+                                            <tr v-for="(subscriber, index) in subscribersData">
+                                                <td class="pt-3-half">{{index+1}}</td>
+                                                <td class="pt-3-half">{{subscriber.email}}</td>
+                                                <td class="pt-3-half">{{subscriber.status}}</td>
+                                                <td class="pt-3-half">{{subscriber.type}}</td>
                                                 <td class="pt-3-half">dugme</td>
                                             </tr>
                                         </table>
@@ -59,10 +70,10 @@
                                                 <th class="text-center">NAME</th>
                                                 <th class="text-center">EMAIL</th>
                                             </tr>
-                                            <tr>
-                                                <td class="pt-3-half">1</td>
-                                                <td class="pt-3-half">Test</td>
-                                                <td class="pt-3-half">email@demo.com</td>
+                                            <tr v-for="(user, index) in usersData">
+                                                <td class="pt-3-half">{{index+1}}</td>
+                                                <td class="pt-3-half">{{user.name}}</td>
+                                                <td class="pt-3-half">{{user.email}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -80,11 +91,32 @@
     export default {
         data () {
             return {
-                //
+                subscribersData: [],
+                usersData: []
             }
         },
+        mounted() {
+            this.getSubscribers();
+        },
         methods: {
-            //
+            /**
+             * Get subscribers
+             */
+            getSubscribers() {
+                axios.get('/admin/index/subscribers').then((response) => {
+                    this.subscribersData = response.data.entity.data;
+                    console.log(this.subscribersData)
+                });
+            },
+            /**
+             * Get users
+             */
+            getUsers() {
+                axios.get('/admin/index/users').then((response) => {
+                    this.usersData = response.data.entity;
+                    console.log(this.usersData)
+                });
+            },
         }
     }
 </script>

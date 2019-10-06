@@ -22,7 +22,7 @@ Auth::routes([
  */
 Route::get('/', 'HomeController@landing');
 /**
- * Auth middleware
+ * Auth middleware and prefix
  */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /**
@@ -32,5 +32,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /**
      * Users
      */
+    Route::get('index/users', 'UserController@indexData');
     Route::resource('/users', 'UserController')->only(['index']);
+    /**
+     * Subscribers
+     */
+    Route::get('index/subscribers', 'SubscriberController@indexData');
+    Route::resource('/subscribers', 'SubscriberController')->only(['index']);
 });

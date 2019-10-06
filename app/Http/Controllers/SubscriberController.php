@@ -18,6 +18,19 @@ class SubscriberController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexData()
+    {
+        // Get all subscribers
+        $subscribers = Subscriber::paginate(10);
+        // Successfully response
+        return response()->custom(200, "All subscribers!", $subscribers);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

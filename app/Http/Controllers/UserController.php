@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,6 +15,19 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.users.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexData()
+    {
+        // Get all users
+        $users = User::all();
+        // Successfully response
+        return response()->custom(200, "All users!", $users);
     }
 
     /**
