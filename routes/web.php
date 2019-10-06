@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@landing');
 /**
  * Auth middleware
  */
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /**
      * Quotes
      */

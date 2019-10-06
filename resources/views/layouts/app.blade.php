@@ -23,15 +23,22 @@
 <body>
 <div id="app">
     @auth
-        <nav class="container navbar navbar-expand-lg navbar-light navbar-laravel">
+        <nav class="container navbar navbar-expand-lg navbar-light navbar-laravel mb-4">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand logo-nav" href="{{ url('/') }}"><i class="fas fa-quote-right"></i></a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item {{ Request::path() == 'admin/users' ? 'active-bold' : ''  }}">
+                        <a class="nav-link a-green font-16" href="{{url('/admin/users')}}">Users</a>
+                    </li>
+                    <li class="nav-item {{ Request::path() == 'admin/quotes' ? 'active-bold' : ''  }}">
+                        <a class="nav-link a-green font-16" href="{{url('/admin/quotes')}}">Quotes</a>
+                    </li>
+                </ul>
 
-                <a id="navbarDropdown" data-target="#userDropdown" class="nav-link dropdown-toggle a-green" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" data-target="#userDropdown" class="nav-link dropdown-toggle a-green font-16" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
@@ -50,7 +57,7 @@
         </nav>
     @endauth
 
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 </div>

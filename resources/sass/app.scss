@@ -11,6 +11,18 @@
 textarea {
     resize: none;
 }
+input:focus, textarea {
+    outline: none !important;
+    border-color: $green !important;
+    box-shadow: none !important;
+}
+.active-bold a {
+    color: $green !important;
+    font-weight: bold;
+}
+.landing-bg {
+    background: #F6F6F6;
+}
 .dropdown-item.active, .dropdown-item:active {
     background-color: $green;
 }
@@ -54,4 +66,14 @@ textarea {
 }
 .font-20 {
     font-size: 20px;
+}
+.green-bg {
+    background: $green;
+}
+.white-color {
+    color: $white;
+}
+.custom-group-input {
+    border: 1px solid #38c172;
+    border-radius: 6px;
 }
