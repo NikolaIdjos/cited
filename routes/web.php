@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /**
      * Quotes
      */
+    Route::post('index/quotes', 'QuoteController@indexData');
     Route::resource('/quotes', 'QuoteController')->only(['index']);
     /**
      * Users

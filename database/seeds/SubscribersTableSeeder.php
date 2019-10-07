@@ -15,7 +15,7 @@ class SubscribersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         $status = ['ACTIVE', 'INACTIVE'];
         $type = ['PAID', 'UNPAID'];
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 40; $i++) {
            Subscriber::create([
                 'email' => $faker->email(),
                 'status' => $status[rand(0,1)],

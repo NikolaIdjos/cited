@@ -8,6 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+const moment = require('moment');
+Vue.use(require('vue-moment'), {
+    moment
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -31,7 +36,13 @@ Vue.component('users-index', require('./pages/admin/users/index').default);
 /**
  * Components
  */
+// Pagination
 Vue.component('custom-pagination', require('./components/paginations/pagination').default);
+// Modals
+Vue.component('create-quote-modal', require('./components/modals/create-quote-modal').default);
+Vue.component('delete-modal', require('./components/modals/delete-modal').default);
+Vue.component('show-quote-modal', require('./components/modals/show-quote-modal').default);
+Vue.component('update-quote-modal', require('./components/modals/update-quote-modal').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

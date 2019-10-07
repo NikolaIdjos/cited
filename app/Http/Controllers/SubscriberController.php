@@ -27,7 +27,7 @@ class SubscriberController extends Controller
     {
         $filters = $request->get('filters');
         // Search subscribers
-        $subscribers = Subscriber::where('email','LIKE','%'.$request->get('searchKeyword').'%');
+        $subscribers = Subscriber::where('email', 'LIKE', '%'.$request->get('searchKeyword').'%');
         // If status is selected
         if ($filters['status']) {
             $subscribers->where('status', $filters['status']);
@@ -37,7 +37,7 @@ class SubscriberController extends Controller
             $subscribers->where('type', $filters['type']);
         }
         // Successfully response
-        return response()->custom(200, "All subscribers!", $subscribers->orderBy('id', 'desc')->paginate(10));
+        return response()->custom(200, "Subscribers!", $subscribers->orderBy('id', 'desc')->paginate(10));
     }
 
     /**

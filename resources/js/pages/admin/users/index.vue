@@ -28,15 +28,15 @@
                                             <div class="form-group col-12 col-md-4">
                                                 <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.status">
                                                     <option :value="null" disabled selected hidden>Status</option>
-                                                    <option value="ACTIVE">ACTIVE</option>
-                                                    <option value="INACTIVE">INACTIVE</option>
+                                                    <option :value="ACTIVE">ACTIVE</option>
+                                                    <option :value="INACTIVE">INACTIVE</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-12 col-md-4">
                                                 <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.type">
                                                     <option :value="null" disabled selected hidden>Type</option>
-                                                    <option value="PAID">PAID</option>
-                                                    <option value="UNPAID">UNPAID</option>
+                                                    <option :value="PAID">PAID</option>
+                                                    <option :value="UNPAID">UNPAID</option>
                                                 </select>
                                             </div>
                                     </div>

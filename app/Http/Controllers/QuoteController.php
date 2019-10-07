@@ -18,6 +18,20 @@ class QuoteController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function indexData(Request $request)
+    {
+        // Search quotes
+        $quotes = Quote::where('description', 'LIKE', '%'.$request->get('searchKeyword').'%');
+        // Successfully response
+        return response()->custom(200, "Quotes!", $quotes->orderBy('id', 'desc')->paginate(12));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
