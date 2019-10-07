@@ -16,7 +16,7 @@
                 <div class="col-3 mb-4" v-for="quote in quotesData">
                     <div class="custom-card card">
                         <div class="card-body d-flex align-items-start flex-column">
-                            <h6 class="card-subtitle mb-2 text-muted">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
+                            <h6 class="card-subtitle mb-2 green-font font-weight-bold">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
                             <a href="javascript:void(0)" class="card-text a-green" @click="showQuote(quote)">
                                 {{quote.description.length > 100 ? quote.description.substring(0, 100) + '...' : quote.description}}
                             </a>

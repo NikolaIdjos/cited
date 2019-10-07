@@ -6,15 +6,13 @@
             <div class="custom-modal-content">
                 <div class="custom-modal-header pb-3">
                     <span class="close" @click="close">&times;</span>
-                    <h3>Show modal</h3>
+                    <h3>Single quote</h3>
                 </div>
-                <div class="custom-modal-body py-3">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
+                <div class="custom-modal-body text-center py-3 font-16">
+                    <p>{{quoteData.description}}</p>
                 </div>
                 <div class="custom-modal-footer text-right pt-3">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="close">Close</button>
-                    <button type="button" class="btn btn-green" @click="submit">Save changes</button>
+                    <button type="button" class="btn btn-secondary" @click="close">Close</button>
                 </div>
             </div>
         </div>
@@ -41,12 +39,6 @@
              * Close modal function
              */
             close() {
-                this.showModal = false;
-            },
-            /**
-             * Close modal and emit next function
-             */
-            submit() {
                 this.showModal = false;
             },
         }
