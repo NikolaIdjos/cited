@@ -12,8 +12,10 @@
                     <p>Are you sure you want to delete this quote?</p>
                 </div>
                 <div class="custom-modal-footer text-right pt-3">
-                    <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                    <button type="button" class="btn btn-green" @click="submit">Delete quote</button>
+                    <form v-on:submit.prevent="submit">
+                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
+                        <button type="submit" class="btn btn-green">Delete quote</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -43,10 +45,13 @@
                 this.showModal = false;
             },
             /**
-             * Close modal and emit next function
+             * Submit, close modal and emit next function
              */
             submit() {
-                this.showModal = false;
+                axios.delete('/admin/quotes/' + this.quoteData.id).then((response) => {
+                    this.$emit('updated', true);
+                    this.showModal = false;
+                });
             },
         }
     }

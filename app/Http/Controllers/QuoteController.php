@@ -41,7 +41,17 @@ class QuoteController extends Controller
      */
     public function store(StoreQuoteRequest $request)
     {
-        //
+        // Create new quote
+        $quote = new Quote;
+        // Fill data
+        $quote->fill($request->all());
+        // Save quote
+        if ($quote->save()) {
+            // Successfully response
+            return response()->custom(200, "Quote saved!", $quote);
+        }
+        // Error response
+        return response()->custom(400, "Quote not saved!", $quote);
     }
 
     /**
@@ -64,7 +74,15 @@ class QuoteController extends Controller
      */
     public function update(UpdateQuoteRequest $request, Quote $quote)
     {
-        //
+        // Fill data
+        $quote->fill($request->all());
+        // Update quote
+        if ($quote->update()) {
+            // Successfully response
+            return response()->custom(200, "Quote updated!", $quote);
+        }
+        // Error response
+        return response()->custom(400, "Quote not updated!", $quote);
     }
 
     /**
@@ -75,6 +93,14 @@ class QuoteController extends Controller
      */
     public function destroy(Quote $quote)
     {
-        //
+        try {
+            // Delete quote
+            $quote->delete();
+            // Successfully response
+            return response()->custom(200, "Quote deleted!", null);
+        } catch (\Exception $e) {
+            // Error response
+            return response()->custom(400, "Quote not deleted!", null);
+        }
     }
 }

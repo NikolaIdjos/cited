@@ -8,17 +8,17 @@
                     <span class="close" @click="close">&times;</span>
                     <h3>Update quote</h3>
                 </div>
-                <div class="custom-modal-body py-3">
-                    <form>
+                <form v-on:submit.prevent="submit">
+                    <div class="custom-modal-body py-3">
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Quote" rows="5" required>{{quoteData.description}}</textarea>
+                            <textarea v-model="quoteData.description" class="form-control" placeholder="Quote" rows="5" required>{{quoteData.description}}</textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="custom-modal-footer text-right pt-3">
-                    <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                    <button type="button" class="btn btn-green" @click="submit">Update changes</button>
-                </div>
+                    </div>
+                    <div class="custom-modal-footer text-right pt-3">
+                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
+                        <button type="submit" class="btn btn-green">Update changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         data () {
             return {
                 showModal: false,
-                quoteData: [],
+                quoteData: {},
             }
         },
         methods: {
@@ -37,7 +37,7 @@
              * Open modal function
              */
             open(data) {
-                this.quoteData = data;
+                this.quoteData = Object.assign({}, data);
                 this.showModal = true;
             },
             /**
@@ -47,10 +47,13 @@
                 this.showModal = false;
             },
             /**
-             * Close modal and emit next function
+             * Submit, close modal and emit updates
              */
             submit() {
-                this.showModal = false;
+                axios.put('/admin/quotes/' + this.quoteData.id, this.quoteData).then((response) => {
+                    this.$emit('updated', true);
+                    this.showModal = false;
+                });
             },
         }
     }

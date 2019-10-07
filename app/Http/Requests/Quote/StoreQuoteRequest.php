@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Quote;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreQuoteRequest extends FormRequest
 {
@@ -24,7 +26,25 @@ class StoreQuoteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'description' => 'required|string'
         ];
+    }
+
+    /**
+     * Throw error when auth is failed.
+     */
+    protected function failedAuthorization() {
+
+        throw new HttpResponseException(response()->custom(403, "Unauthorized!", null));
+    }
+
+    /**
+     * Throw error when validation is failed.
+     *
+     * @param Validator $validator
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->custom(422, $validator->errors(), null));
     }
 }

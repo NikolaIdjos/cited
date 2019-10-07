@@ -8,17 +8,17 @@
                     <span class="close" @click="close">&times;</span>
                     <h3>Create quote</h3>
                 </div>
-                <div class="custom-modal-body py-3">
-                    <form>
+                <form v-on:submit.prevent="submit">
+                    <div class="custom-modal-body py-3">
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Quote" rows="5" required></textarea>
+                            <textarea v-model="quoteData.description" class="form-control" placeholder="Quote" rows="5" required></textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="custom-modal-footer text-right pt-3">
-                    <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                    <button type="button" class="btn btn-green" @click="submit">Save quote</button>
-                </div>
+                    </div>
+                    <div class="custom-modal-footer text-right pt-3">
+                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
+                        <button type="submit" class="btn btn-green">Save quote</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -28,7 +28,8 @@
     export default {
         data () {
             return {
-                showModal: false
+                showModal: false,
+                quoteData: {}
             }
         },
         methods: {
@@ -45,10 +46,14 @@
                 this.showModal = false;
             },
             /**
-             * Close modal and emit next function
+             * Submit, close modal and emit updates
              */
             submit() {
-                this.showModal = false;
+                axios.post('/admin/quotes', this.quoteData).then((response) => {
+                    this.$emit('updated', true);
+                    this.showModal = false;
+                    this.quoteData = {};
+                });
             },
         }
     }

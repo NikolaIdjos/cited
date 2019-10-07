@@ -14,7 +14,7 @@
             </div>
             <div class="row">
                 <div class="col-3 mb-4" v-for="quote in quotesData">
-                    <div class="custom-card card">
+                    <div class="custom-card card-shadow card">
                         <div class="card-body d-flex align-items-start flex-column">
                             <h6 class="card-subtitle mb-2 green-font font-weight-bold">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
                             <a href="javascript:void(0)" class="card-text a-green" @click="showQuote(quote)">
@@ -30,10 +30,10 @@
             </div>
             <!--Components-->
             <custom-pagination ref="customPagination" data-url="/admin/index/quotes" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
-            <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal"></create-quote-modal>
-            <update-quote-modal ref="updateQuoteModal"></update-quote-modal>
-            <delete-modal ref="deleteQuoteModal"></delete-modal>
-            <show-quote-modal ref="showQuoteModal"></show-quote-modal>
+            <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal" v-on:updated="updateData()"></create-quote-modal>
+            <update-quote-modal ref="updateQuoteModal" v-on:updated="updateData()"></update-quote-modal>
+            <delete-modal ref="deleteQuoteModal" v-on:updated="updateData()"></delete-modal>
+            <show-quote-modal ref="showQuoteModal" v-on:updated="updateData()"></show-quote-modal>
         </div>
     </div>
 </template>
@@ -70,6 +70,12 @@
              */
             showQuote(data) {
                 this.$refs.showQuoteModal.open(data);
+            },
+            /**
+             * Update quotes data
+             */
+            updateData() {
+                this.$refs.customPagination.fetchData();
             },
         }
     }

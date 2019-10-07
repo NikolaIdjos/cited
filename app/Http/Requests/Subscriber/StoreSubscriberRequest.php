@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Subscriber;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreSubscriberRequest extends FormRequest
 {
@@ -26,5 +28,23 @@ class StoreSubscriberRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    /**
+     * Throw error when auth is failed.
+     */
+    protected function failedAuthorization() {
+
+        throw new HttpResponseException(response()->custom(403, "Unauthorized!", null));
+    }
+
+    /**
+     * Throw error when validation is failed.
+     *
+     * @param Validator $validator
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->custom(422, $validator->errors(), null));
     }
 }
