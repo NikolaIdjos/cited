@@ -9,7 +9,7 @@
                     <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
                 </div>
                 <div class="input-group col-12 col-md-2 ml-auto">
-                    <button type="button" class="btn btn-green ml-auto">Create quote</button>
+                    <button @click="$refs.createQuoteModal.open($event)" type="button" class="btn btn-green ml-auto">Create quote</button>
                 </div>
             </div>
             <div class="row">
@@ -19,14 +19,19 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
                             <p class="card-text">{{quote.description.length > 100 ? quote.description.substring(0, 100) + '...' : quote.description}}</p>
                             <div class="mt-auto ml-auto">
-                                <a href="#" class="card-link text-success">Update</a>
-                                <a href="#" class="card-link text-danger">Delete</a>
+                                <a href="javascript:void(0)" class="card-link text-success">Update</a>
+                                <a href="javascript:void(0)" class="card-link text-danger">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--Components-->
             <custom-pagination ref="customPagination" data-url="/admin/index/quotes" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
+            <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal"></create-quote-modal>
+            <update-quote-modal v-on:openUpdateQuoteModal="$refs.updateQuoteModal.open($event)" ref="updateQuoteModal"></update-quote-modal>
+            <delete-modal v-on:openDeleteModal="$refs.deleteModal.open($event)" ref="deleteModal"></delete-modal>
+            <show-quote-modal v-on:openShowQuoteModal="$refs.showQuoteModal.open($event)" ref="showQuoteModal"></show-quote-modal>
         </div>
     </div>
 </template>
