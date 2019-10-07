@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Quote\StoreQuoteRequest;
+use App\Http\Requests\Quote\UpdateQuoteRequest;
 use App\Quote;
 use Illuminate\Http\Request;
 
@@ -32,22 +34,12 @@ class QuoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreQuoteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuoteRequest $request)
     {
         //
     }
@@ -64,24 +56,13 @@ class QuoteController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Quote  $quote
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Quote $quote)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Quote  $quote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quote $quote)
+    public function update(UpdateQuoteRequest $request, Quote $quote)
     {
         //
     }

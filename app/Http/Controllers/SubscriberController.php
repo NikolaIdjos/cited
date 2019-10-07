@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Subscriber\StoreSubscriberRequest;
 use App\Subscriber;
 use Illuminate\Http\Request;
 
@@ -41,16 +42,6 @@ class SubscriberController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,24 +64,13 @@ class SubscriberController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subscriber $subscriber)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreSubscriberRequest  $request
      * @param  \App\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscriber $subscriber)
+    public function update(StoreSubscriberRequest $request, Subscriber $subscriber)
     {
         //
     }
