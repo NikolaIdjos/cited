@@ -17,10 +17,12 @@
                     <div class="custom-card card">
                         <div class="card-body d-flex align-items-start flex-column">
                             <h6 class="card-subtitle mb-2 text-muted">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
-                            <p class="card-text">{{quote.description.length > 100 ? quote.description.substring(0, 100) + '...' : quote.description}}</p>
+                            <a href="javascript:void(0)" class="card-text a-green" @click="showQuote(quote)">
+                                {{quote.description.length > 100 ? quote.description.substring(0, 100) + '...' : quote.description}}
+                            </a>
                             <div class="mt-auto ml-auto">
-                                <a href="javascript:void(0)" class="card-link text-success">Update</a>
-                                <a href="javascript:void(0)" class="card-link text-danger">Delete</a>
+                                <a href="javascript:void(0)" class="card-link text-success" @click="updateQuote(quote)">Update</a>
+                                <a href="javascript:void(0)" class="card-link text-danger" @click="deleteQuote(quote)">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -29,9 +31,9 @@
             <!--Components-->
             <custom-pagination ref="customPagination" data-url="/admin/index/quotes" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
             <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal"></create-quote-modal>
-            <update-quote-modal v-on:openUpdateQuoteModal="$refs.updateQuoteModal.open($event)" ref="updateQuoteModal"></update-quote-modal>
-            <delete-modal v-on:openDeleteModal="$refs.deleteModal.open($event)" ref="deleteModal"></delete-modal>
-            <show-quote-modal v-on:openShowQuoteModal="$refs.showQuoteModal.open($event)" ref="showQuoteModal"></show-quote-modal>
+            <update-quote-modal ref="updateQuoteModal"></update-quote-modal>
+            <delete-modal ref="deleteQuoteModal"></delete-modal>
+            <show-quote-modal ref="showQuoteModal"></show-quote-modal>
         </div>
     </div>
 </template>
@@ -50,6 +52,24 @@
              */
             pageChanged(data) {
                 this.quotesData = data.data;
+            },
+            /**
+             * Update quote
+             */
+            updateQuote(data) {
+                this.$refs.updateQuoteModal.open(data);
+            },
+            /**
+             * Delete quote
+             */
+            deleteQuote(data) {
+                this.$refs.deleteQuoteModal.open(data);
+            },
+            /**
+             * Show quote
+             */
+            showQuote(data) {
+                this.$refs.showQuoteModal.open(data);
             },
         }
     }

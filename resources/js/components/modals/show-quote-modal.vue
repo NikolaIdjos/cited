@@ -6,7 +6,7 @@
             <div class="custom-modal-content">
                 <div class="custom-modal-header pb-3">
                     <span class="close" @click="close">&times;</span>
-                    <h3>Modal Header</h3>
+                    <h3>Show modal</h3>
                 </div>
                 <div class="custom-modal-body py-3">
                     <p>Some text in the Modal Body</p>
@@ -25,14 +25,16 @@
     export default {
         data () {
             return {
-                showModal: false
+                showModal: false,
+                quoteData: [],
             }
         },
         methods: {
             /**
              * Open modal function
              */
-            open() {
+            open(data) {
+                this.quoteData = data;
                 this.showModal = true;
             },
             /**
