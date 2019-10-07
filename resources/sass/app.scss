@@ -20,7 +20,7 @@ input:focus, textarea:focus, select:focus {
     color: $green !important;
     font-weight: bold;
 }
-.landing-bg {
+.grey-bg {
     background: #F6F6F6;
 }
 .dropdown-item.active, .dropdown-item:active {
@@ -89,5 +89,9 @@ input:focus, textarea:focus, select:focus {
 }
 .custom-pills .nav-item .active {
     background: $green;
+    color: $white;
+}
+.active-page-link:hover {
+    background-color: $green;
     color: $white;
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container-fluid landing-bg">
+        <div class="container-fluid">
             <div class="row d-flex align-items-center">
                 <div class="col-6">
                     <div class="w-50 text-center m-auto">

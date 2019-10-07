@@ -20,14 +20,24 @@ class SubscriberController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function indexData()
+    public function indexData(Request $request)
     {
-        // Get all subscribers
-        $subscribers = Subscriber::paginate(10);
+        $filters = $request->get('filters');
+        // Search subscribers
+        $subscribers = Subscriber::where('email','LIKE','%'.$request->get('searchKeyword').'%');
+        // If status is selected
+        if ($filters['status']) {
+            $subscribers->where('status', $filters['status']);
+        }
+        // If type is selected
+        if ($filters['type']) {
+            $subscribers->where('type', $filters['type']);
+        }
         // Successfully response
-        return response()->custom(200, "All subscribers!", $subscribers);
+        return response()->custom(200, "All subscribers!", $subscribers->orderBy('id', 'desc')->paginate(10));
     }
 
     /**

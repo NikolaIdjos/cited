@@ -8,7 +8,7 @@
                 <a @click="fetchData(page)" class="page-link a-green" href="javascript:void(0)">{{page}}</a>
             </li>
             <li class="page-item">
-                <a class="page-link green-bg white-color" v-if="data.current_page !== 0" href="javascript:void(0)">{{data.current_page}}</a>
+                <a class="active-page-link page-link green-bg white-color" v-if="data.current_page !== 0" href="javascript:void(0)">{{data.current_page}}</a>
             </li>
             <li v-for="page in higherVisiblePages" class="page-item">
                 <a class="page-link a-green" href="javascript:void(0)" @click="fetchData(page)">{{page}}</a>
@@ -30,6 +30,7 @@
                     last_page: 0
                 },
                 url: this.dataUrl,
+                filters: this.filtersProp
             }
         },
         props: {
@@ -46,10 +47,20 @@
                 type: String,
                 required: true,
             },
+            searchKeyword: {
+                type: String,
+                required: false,
+                default: ''
+            },
             method: {
                 type: String,
                 required: false,
-                default: 'get'
+                default: 'post'
+            },
+            filtersProp: {
+                type: Object,
+                required: false,
+                default: null
             },
         },
         watch: {
@@ -85,13 +96,17 @@
             /**
              * Pagination API call function and emit to parent component
              */
-            fetchData(pageNumber = '', keyword = '') {
+            fetchData(pageNumber = '', keyword = '', filters = null) {
+                console.log(filters)
+                console.log(keyword)
                 if (pageNumber === '') {
                     pageNumber = this.data.current_page;
                 }
                 let page = (pageNumber ? ('?page=' + pageNumber) : '');
+                this.formData['searchKeyword'] = keyword;
+                this.formData['filters'] = filters;
 
-                axios.get(this.url + page)
+                axios.post(this.url + page, this.formData)
                     .then((response) => {
                         if (!(response.data.entity === undefined)) {
                             this.data = response.data.entity;

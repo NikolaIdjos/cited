@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="grey-bg">
 <div id="app">
     @auth
         <nav class="container navbar navbar-expand-lg navbar-light navbar-laravel mb-4">

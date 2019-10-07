@@ -37,6 +37,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     /**
      * Subscribers
      */
-    Route::get('index/subscribers', 'SubscriberController@indexData');
+    Route::post('index/subscribers', 'SubscriberController@indexData');
     Route::resource('/subscribers', 'SubscriberController')->only(['index']);
 });
