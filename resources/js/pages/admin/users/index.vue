@@ -47,21 +47,25 @@
                                             <tr>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">EMAIL</th>
-                                                <th class="text-center">STATUS</th>
                                                 <th class="text-center">TYPE</th>
-                                                <th class="text-center">BAN</th>
+                                                <th class="text-center">STATUS</th>
                                             </tr>
-                                            <tr v-for="(subscriber, index) in subscribersData">
+                                            <tr v-for="subscriber in subscribersData">
                                                 <td class="pt-3-half">{{subscriber.id}}</td>
                                                 <td class="pt-3-half">{{subscriber.email}}</td>
-                                                <td class="pt-3-half">{{subscriber.status}}</td>
                                                 <td class="pt-3-half">{{subscriber.type}}</td>
-                                                <td class="pt-3-half">dugme</td>
+                                                <td class="pt-3-half">
+                                                    <h4>
+                                                        <span v-if="subscriber.status == 'ACTIVE'" class="badge badge-success cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
+                                                        <span v-else class="badge badge-danger cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
+                                                    </h4>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
                                 <custom-pagination ref="customPagination" data-url="/admin/index/subscribers" v-on:pagination="pageChanged($event)" :filters-prop="filters" :search-keyword="searchKeyword"></custom-pagination>
+                                <change-subscriber-status ref="changeSubscriberStatusModal" v-on:updated="updateData()"></change-subscriber-status>
                             </div>
                             <!--Admins pill-->
                             <div class="tab-pane fade" id="pills-admins" role="tabpanel" aria-labelledby="pills-admins-tab">
@@ -73,7 +77,7 @@
                                                 <th class="text-center">NAME</th>
                                                 <th class="text-center">EMAIL</th>
                                             </tr>
-                                            <tr v-for="(user, index) in usersData">
+                                            <tr v-for="user in usersData">
                                                 <td class="pt-3-half">{{user.id}}</td>
                                                 <td class="pt-3-half">{{user.name}}</td>
                                                 <td class="pt-3-half">{{user.email}}</td>
@@ -117,6 +121,18 @@
              */
             pageChanged(data) {
                 this.subscribersData = data.data;
+            },
+            /**
+             * Update subscriber status
+             */
+            updateStatus(data) {
+                this.$refs.changeSubscriberStatusModal.open(data);
+            },
+            /**
+             * Update quotes data
+             */
+            updateData() {
+                this.$refs.customPagination.fetchData();
             },
         }
     }

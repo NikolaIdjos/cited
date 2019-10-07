@@ -39,5 +39,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
      * Subscribers
      */
     Route::post('index/subscribers', 'SubscriberController@indexData');
-    Route::resource('/subscribers', 'SubscriberController')->only(['index']);
+    Route::resource('/subscribers', 'SubscriberController')->only(['index', 'update']);
 });

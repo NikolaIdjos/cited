@@ -43,6 +43,7 @@ Vue.component('create-quote-modal', require('./components/modals/create-quote-mo
 Vue.component('delete-modal', require('./components/modals/delete-modal').default);
 Vue.component('show-quote-modal', require('./components/modals/show-quote-modal').default);
 Vue.component('update-quote-modal', require('./components/modals/update-quote-modal').default);
+Vue.component('change-subscriber-status', require('./components/modals/change-subscriber-status').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

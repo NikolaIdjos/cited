@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Subscriber\StoreSubscriberRequest;
+use App\Http\Requests\Subscriber\UpdateSubscriberRequest;
 use App\Subscriber;
 use Illuminate\Http\Request;
 
@@ -44,10 +45,10 @@ class SubscriberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreSubscriberRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSubscriberRequest $request)
     {
         //
     }
@@ -66,13 +67,23 @@ class SubscriberController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  StoreSubscriberRequest  $request
+     * @param  UpdateSubscriberRequest  $request
      * @param  \App\Subscriber  $subscriber
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSubscriberRequest $request, Subscriber $subscriber)
+    public function update(UpdateSubscriberRequest $request, Subscriber $subscriber)
     {
-        //
+        // If request has status fill it
+        if ($request->has('status')) {
+            $subscriber->status = $request->get('status');
+        }
+        // Update subscriber
+        if ($subscriber->update()) {
+            // Successfully response
+            return response()->custom(200, "Subscriber updated!", $subscriber);
+        }
+        // Error response
+        return response()->custom(400, "Subscriber not updated!", $subscriber);
     }
 
     /**
