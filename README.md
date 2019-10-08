@@ -1,4 +1,4 @@
-#**Cited**
+#* *Cited**
 
 Copy .env.example to .env
 
@@ -8,7 +8,9 @@ Setup database in .env and create db
 `DB_USERNAME=root`
 `DB_PASSWORD=root`
 
-#####_Commands to run:_
+___
+
+##### _Commands to run:_
 
 `composer install`
 
