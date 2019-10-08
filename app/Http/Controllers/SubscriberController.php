@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Subscriber\StoreSubscriberRequest;
 use App\Http\Requests\Subscriber\UpdateSubscriberRequest;
+use App\Mail\Subscriber\SubscriberDeactivatedMail;
+use App\Mail\Subscriber\SubscriberReactivatedMail;
 use App\Subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SubscriberController extends Controller
 {
@@ -76,6 +79,12 @@ class SubscriberController extends Controller
         // If request has status fill it
         if ($request->has('status')) {
             $subscriber->status = $request->get('status');
+            // Send email
+            if ($request->get('status') == 'ACTIVE') {
+                Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
+            } else {
+                Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
+            }
         }
         // Update subscriber
         if ($subscriber->update()) {
@@ -84,6 +93,35 @@ class SubscriberController extends Controller
         }
         // Error response
         return response()->custom(400, "Subscriber not updated!", $subscriber);
+    }
+
+    /**
+     * Update status.
+     *
+     * @param  \App\Subscriber  $subscriber
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Subscriber $subscriber)
+    {
+        // If request has status fill it
+        if ($subscriber->status == 'ACTIVE') {
+            $subscriber->status = 'INACTIVE';
+        } else {
+            $subscriber->status = 'ACTIVE';
+        }
+        // Update subscriber
+        if ($subscriber->update()) {
+            // Send email
+            if ($subscriber->status == 'ACTIVE') {
+                Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
+            } else {
+                Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
+            }
+            // Successfully response
+            return redirect('/');
+        }
+        // Error response
+        return redirect('/');
     }
 
     /**

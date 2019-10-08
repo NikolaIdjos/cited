@@ -41,3 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('index/subscribers', 'SubscriberController@indexData');
     Route::resource('/subscribers', 'SubscriberController')->only(['index', 'update']);
 });
+/**
+ * Mails
+ */
+Route::get('status/subscribers/{subscriber}', 'SubscriberController@updateStatus');
