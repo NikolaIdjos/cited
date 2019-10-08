@@ -1,11 +1,13 @@
 @component('mail::message')
 <center>
-    Your account is deactivated!
+    Welcome!
     <br>
-    If you would like to activate your account press the button below.
+    Your account is activated!
+    <br>
+    You will receive new quotes every day.
 </center>
 @component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id, 'color' => 'success'])
-    Reactivate
+    Deactivate
 @endcomponent
 <center>
     Thank You,<br>
