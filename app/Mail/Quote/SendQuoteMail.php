@@ -1,28 +1,32 @@
 <?php
 
-namespace App\Mail\Subscriber;
+namespace App\Mail\Quote;
 
+use App\Quote;
 use App\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SubscriberReactivatedMail extends Mailable
+class SendQuoteMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subscriber;
+    public $quote;
 
     /**
      * Create a new message instance.
      *
      * @param Subscriber $subscriber
+     * @param Quote $quote
      * @return void
      */
-    public function __construct(Subscriber $subscriber)
+    public function __construct(Subscriber $subscriber, Quote $quote)
     {
         $this->subscriber = $subscriber;
+        $this->quote = $quote;
     }
 
     /**
@@ -32,8 +36,8 @@ class SubscriberReactivatedMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.subscriber.subscriber-reactivated-mail')
+        return $this->markdown('mail.quote.send-quote-mail')
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Your account is reactivated!');
+            ->subject('New Quote!');
     }
 }

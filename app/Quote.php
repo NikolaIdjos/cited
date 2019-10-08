@@ -14,4 +14,12 @@ class Quote extends Model
     protected $fillable = [
         'description'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function subscribers()
+    {
+        return $this->belongsToMany(Subscriber::class, 'subscriber_quote', 'quote_id', 'subscriber_id');
+    }
 }

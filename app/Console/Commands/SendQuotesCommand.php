@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\Quote\SendQuoteMail;
+use App\Quote;
+use App\Subscriber;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class SendQuotesCommand extends Command
 {
@@ -37,6 +41,25 @@ class SendQuotesCommand extends Command
      */
     public function handle()
     {
-        //
+        // Find subscribers
+        $subscribers = Subscriber::with('lastQuote')
+            ->activeAndPaid()
+            ->get();
+        // Foreach subscribers
+        foreach ($subscribers as $subscriber) {
+            // Find last quote or create first quote
+            if (isset($subscriber->lastQuote[0])) {
+                $nextQuote = Quote::where('id', '>', $subscriber->lastQuote[0]->id)->first();
+            } else {
+                $nextQuote = Quote::first();
+            }
+            // If next quote exist
+            if ($nextQuote) {
+                // Attach subscriber and quote
+                $subscriber->quotes()->attach($nextQuote->id);
+                // Send mail
+                Mail::to($subscriber->email)->queue((new SendQuoteMail($subscriber, $nextQuote))->onQueue('emails'));
+            }
+        }
     }
 }
