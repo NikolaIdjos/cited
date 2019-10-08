@@ -1,4 +1,4 @@
-#* *Cited**
+# **Cited**
 
 Copy .env.example to .env
 
