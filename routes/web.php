@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/**
+ * Auth routes
+ */
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
@@ -25,7 +27,7 @@ Route::get('/', 'HomeController@landing');
  * Subscribers
  */
 Route::get('status/subscribers/{subscriber}/{status}', 'SubscriberController@updateStatus');
-Route::resource('/subscribers', 'SubscriberController')->only(['store']);
+Route::post('/subscribers', 'SubscriberController@store');
 Route::get('/mail/subscribers/{subscriber}', 'SubscriberController@sendMail');
 /**
  * Auth middleware and prefix

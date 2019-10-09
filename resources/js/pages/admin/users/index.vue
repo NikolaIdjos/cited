@@ -1,12 +1,14 @@
 <template>
     <div>
         <div class="container">
+            <!-- Title -->
             <div class="text-center my-5">
                 <h1 class="font-weight-bold green-font">Users</h1>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card-shadow card">
+                        <!-- Pills -->
                         <div class="card-header text-center font-weight-bold py-4">
                             <ul class="nav nav-pills custom-pills d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
@@ -20,23 +22,25 @@
                         <div class="tab-content" id="pills-tabContent">
                             <!--Subscribers pill-->
                             <div class="tab-pane fade show active" id="pills-subscribers" role="tabpanel" aria-labelledby="pills-subscribers-tab">
+                                <!-- Search and filter -->
                                 <div class="pt-4 px-4">
                                     <div class="row d-flex justify-content-center">
-                                            <div class="input-group col-12 col-md-4">
-                                                <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
-                                            </div>
-                                            <div class="form-group col-12 col-md-4">
-                                                <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.status">
-                                                    <option :value="null" disabled selected hidden>Status</option>
-                                                    <option value="ACTIVE">window.constants.ACTIVE_STATUS</option>
-                                                    <option value="INACTIVE">window.constants.INACTIVE_STATUS</option>
-                                                    <option value="UNPAID">window.constants.UNPAID_STATUS</option>
-                                                </select>
-                                            </div>
+                                        <div class="input-group col-12 col-md-4">
+                                            <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
+                                        </div>
+                                        <div class="form-group col-12 col-md-4">
+                                            <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.status">
+                                                <option :value="null" disabled selected hidden>Status</option>
+                                                <option value="ACTIVE">window.constants.ACTIVE_STATUS</option>
+                                                <option value="INACTIVE">window.constants.INACTIVE_STATUS</option>
+                                                <option value="UNPAID">window.constants.UNPAID_STATUS</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-body pb-4 px-4">
                                     <div id="table">
+                                        <!-- Table with subscribers -->
                                         <table class="table table-bordered table-responsive-md table-striped text-center">
                                             <tr>
                                                 <th class="text-center">ID</th>
@@ -57,6 +61,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!-- Components -->
                                 <custom-pagination ref="customPagination" data-url="/admin/index/subscribers" v-on:pagination="pageChanged($event)" :filters-prop="filters" :search-keyword="searchKeyword"></custom-pagination>
                                 <change-subscriber-status ref="changeSubscriberStatusModal" v-on:updated="updateData()"></change-subscriber-status>
                             </div>
@@ -64,6 +69,7 @@
                             <div class="tab-pane fade" id="pills-admins" role="tabpanel" aria-labelledby="pills-admins-tab">
                                 <div class="card-body pb-4 px-4">
                                     <div>
+                                        <!-- Table with admins -->
                                         <table class="table table-bordered table-responsive-md table-striped text-center">
                                             <tr>
                                                 <th class="text-center">ID</th>
@@ -104,7 +110,9 @@
              * Get users
              */
             getUsers() {
+                // Send request
                 axios.get('/admin/index/users').then((response) => {
+                    // Change data
                     this.usersData = response.data.entity;
                 });
             },
@@ -118,12 +126,14 @@
              * Update subscriber status
              */
             updateStatus(data) {
+                // Open modal
                 this.$refs.changeSubscriberStatusModal.open(data);
             },
             /**
              * Update quotes data
              */
             updateData() {
+                // Open modal
                 this.$refs.customPagination.fetchData();
             },
         }

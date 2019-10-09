@@ -10,12 +10,13 @@ use Illuminate\Http\Request;
 class QuoteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show quotes page.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Return view
         return view('admin.quotes.index');
     }
 

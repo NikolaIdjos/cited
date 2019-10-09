@@ -42,9 +42,7 @@ class SendQuotesCommand extends Command
     public function handle()
     {
         // Find subscribers
-        $subscribers = Subscriber::with('lastQuote')
-            ->active()
-            ->get();
+        $subscribers = Subscriber::with('lastQuote')->active()->get();
         // Foreach subscribers
         foreach ($subscribers as $subscriber) {
             // Find last quote or create first quote

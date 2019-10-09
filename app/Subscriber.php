@@ -18,7 +18,7 @@ class Subscriber extends Model
     ];
 
     /**
-     * Scope a query to only include paid and active subscribers.
+     * Scope a query to only include active subscribers.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder

@@ -17,6 +17,7 @@ class SubscriberController extends Controller
 {
     /**
      * Instantiate a new controller instance.
+     * Middleware.
      *
      * @return void
      */
@@ -46,7 +47,7 @@ class SubscriberController extends Controller
         $filters = $request->get('filters');
         // Search subscribers
         $subscribers = Subscriber::where('email', 'LIKE', '%'.$request->get('searchKeyword').'%');
-        // If status is selected
+        // If status is selected find that subscriber
         if ($filters['status']) {
             $subscribers->where('status', $filters['status']);
         }

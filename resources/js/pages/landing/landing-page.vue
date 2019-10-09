@@ -2,6 +2,7 @@
     <div>
         <div class="container-fluid">
             <div class="row d-flex align-items-center">
+                <!-- Right side with form -->
                 <div class="col-6">
                     <div class="w-50 text-center m-auto">
                         <div class="logo mb-5">
@@ -27,11 +28,13 @@
                         </form>
                     </div>
                 </div>
+                <!-- Left side with image -->
                 <div class="col-6">
                     <img class="w-100" :src="'/img/background.jpg'">
                 </div>
             </div>
         </div>
+        <!-- Components -->
         <change-status-mail ref="changeStatusModal"></change-status-mail>
     </div>
 </template>
@@ -45,18 +48,26 @@
         },
         methods: {
             /**
-             * Submit and create subscriber or open modal for reactivate
+             * Submit and send data
+             * Open modal
              */
             submit() {
+                // Send request
                 axios.post('/subscribers', this.subscriberData).then((response) => {
+                    // Get data
                     this.subscriberData = response.data.entity;
+                    // Open modal
                     if (this.subscriberData.status == window.constants.UNPAID_STATUS) {
+                        // If user is unpaid
                         console.log('unpaid')
                     } else if (this.subscriberData.status == window.constants.ACTIVE_STATUS){
+                        // If user is active
                         this.$refs.changeStatusModal.open(response.data.entity);
                     } else if (this.subscriberData.status == window.constants.INACTIVE_STATUS){
+                        // If user is inactive
                         this.$refs.changeStatusModal.open(response.data.entity);
                     } else {
+                        // If user does not exist
                         console.log('no acc')
                     }
                 });

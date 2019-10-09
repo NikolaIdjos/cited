@@ -12,7 +12,9 @@ class QuotesTableSeeder extends Seeder
      */
     public function run()
     {
+        // Faker
         $faker = Faker\Factory::create();
+        // Save data
         for ($i = 0; $i <= 50; $i++) {
             Quote::create([
                 'description' => $faker->text(),

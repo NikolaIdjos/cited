@@ -1,9 +1,11 @@
 <template>
     <div>
         <div class="container">
+            <!-- Title -->
             <div class="text-center my-5">
                 <h1 class="font-weight-bold green-font">Quotes</h1>
             </div>
+            <!-- Search -->
             <div class="row mb-5">
                 <div class="input-group col-12 col-md-4">
                     <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
@@ -12,6 +14,7 @@
                     <button @click="$refs.createQuoteModal.open($event)" type="button" class="btn btn-green ml-auto">Create quote</button>
                 </div>
             </div>
+            <!-- Cards -->
             <div class="row">
                 <div class="col-3 mb-4" v-for="quote in quotesData">
                     <div class="custom-card card-shadow card">
@@ -57,18 +60,21 @@
              * Update quote
              */
             updateQuote(data) {
+                // Open modal
                 this.$refs.updateQuoteModal.open(data);
             },
             /**
              * Delete quote
              */
             deleteQuote(data) {
+                // Open modal
                 this.$refs.deleteQuoteModal.open(data);
             },
             /**
              * Show quote
              */
             showQuote(data) {
+                // Open modal
                 this.$refs.showQuoteModal.open(data);
             },
             /**
