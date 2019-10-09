@@ -62,6 +62,11 @@
                     this.showModal = false;
                     // Clear data
                     this.quoteData = {};
+                }).error((error) => {
+                    // Close modal
+                    this.showModal = false;
+                    // Clear data
+                    this.quoteData = {};
                 });
             },
         }

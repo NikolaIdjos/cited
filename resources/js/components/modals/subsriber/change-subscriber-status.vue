@@ -66,6 +66,9 @@
                     this.$emit('updated', true);
                     // Close modal
                     this.showModal = false;
+                }).error((error) => {
+                    // Close modal
+                    this.showModal = false;
                 });
             },
         }
