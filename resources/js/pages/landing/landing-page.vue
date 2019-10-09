@@ -43,6 +43,9 @@
             }
         },
         methods: {
+            /**
+             * Submit and create subscriber
+             */
             submit() {
                 axios.post('/subscribers', this.subscriberData).then((response) => {
                     this.subscriberData = {};

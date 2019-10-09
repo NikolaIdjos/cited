@@ -6,11 +6,22 @@
 
 require('./bootstrap');
 
+// Vue
 window.Vue = require('vue');
 
+// Moment
 const moment = require('moment');
 Vue.use(require('vue-moment'), {
     moment
+});
+
+// Vue toastr
+import VueToastr2 from 'vue-toastr-2';
+import 'vue-toastr-2/dist/vue-toastr-2.min.css';
+window.toastr = require('toastr');
+Vue.use(VueToastr2, {
+    progressBar: true,
+    positionClass: "toast-bottom-right"
 });
 
 /**
@@ -44,6 +55,27 @@ Vue.component('delete-modal', require('./components/modals/delete-modal').defaul
 Vue.component('show-quote-modal', require('./components/modals/show-quote-modal').default);
 Vue.component('update-quote-modal', require('./components/modals/update-quote-modal').default);
 Vue.component('change-subscriber-status', require('./components/modals/change-subscriber-status').default);
+
+// Interceptor for toastr messages
+window.axios.interceptors.response.use(function (response) {
+    // Success response
+    return response;
+}, function (error) {
+    // Do something with response error
+    // If error is 422
+    if (error.response.status == 422) {
+        Object.keys(error.response.data.message).forEach(key => {
+            let errorMessage = error.response.data.message[key];
+            app.$toastr.error(errorMessage);
+        })
+
+    } else {
+        // Other errors
+        app.$toastr.error(error.response.message);
+    }
+
+    return Promise.reject(error.response);
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
