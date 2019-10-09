@@ -13,7 +13,7 @@
                 <div class="custom-modal-body text-center py-3 font-16">
                     <p>You will receive a mail where you can change your status!
                         <br>
-                        Your current status is: <b>{{subscriberData.status}}</b>
+                        Your current status is: <b class="green-font">{{subscriberData.status}}</b>
                     </p>
                 </div>
                 <!-- Modal footer -->

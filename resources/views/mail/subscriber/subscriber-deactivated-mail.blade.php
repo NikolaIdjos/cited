@@ -1,6 +1,6 @@
 @component('mail::message')
 <center>
-    Your account is deactivated!
+    Your account is not active!
     <br>
     If you would like to activate your account press the button below.
 </center>
