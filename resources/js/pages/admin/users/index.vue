@@ -28,7 +28,7 @@
                                         <div class="input-group col-12 col-md-4">
                                             <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
                                         </div>
-                                        <div class="form-group col-12 col-md-4">
+                                        <div class="form-group col-12 col-md-4 mt-2 mt-md-0">
                                             <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.status">
                                                 <option :value="null" disabled selected hidden>Status</option>
                                                 <option :value="constants.ACTIVE_STATUS">{{constants.ACTIVE_STATUS}}</option>
@@ -39,9 +39,9 @@
                                     </div>
                                 </div>
                                 <div class="card-body pb-4 px-4">
-                                    <div id="table">
+                                    <div class="table-responsive-sm">
                                         <!-- Table with subscribers -->
-                                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                                        <table class="table table-bordered table-striped text-center">
                                             <tr>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">EMAIL</th>
@@ -68,9 +68,9 @@
                             <!--Admins pill-->
                             <div class="tab-pane fade" id="pills-admins" role="tabpanel" aria-labelledby="pills-admins-tab">
                                 <div class="card-body pb-4 px-4">
-                                    <div>
+                                    <div class="table-responsive-md">
                                         <!-- Table with admins -->
-                                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                                        <table class="table table-bordered table-striped text-center">
                                             <tr>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">NAME</th>

@@ -145,3 +145,9 @@ input:focus, textarea:focus, select:focus {
     text-decoration: none;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1000px) {
+    .custom-modal-content {
+        width: 100%;
+    }
+}

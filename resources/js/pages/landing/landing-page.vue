@@ -3,8 +3,8 @@
         <div class="container-fluid">
             <div class="row d-flex align-items-center">
                 <!-- Right side with form -->
-                <div class="col-6">
-                    <div class="w-50 text-center m-auto">
+                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                    <div class="w-75 text-center m-auto">
                         <div class="logo mb-5">
                             <i class="fas fa-quote-right"></i>
                         </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <!-- Left side with image -->
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <img class="w-100" :src="'/img/background.jpg'">
                 </div>
             </div>
@@ -71,6 +71,8 @@
                         // If user does not exist
                         this.$refs.paymentModal.open(response.data.entity);
                     }
+                    // Empty data
+                    this.subscriberData = {};
                 });
             },
         }

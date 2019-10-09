@@ -7,16 +7,16 @@
             </div>
             <!-- Search -->
             <div class="row mb-5">
-                <div class="input-group col-12 col-md-4">
+                <div class="input-group col-7 col-md-5 col-lg-4">
                     <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
                 </div>
-                <div class="input-group col-12 col-md-2 ml-auto">
+                <div class="input-group col-5 col-md-3 col-lg-2 ml-auto">
                     <button @click="$refs.createQuoteModal.open($event)" type="button" class="btn btn-green ml-auto">Create quote</button>
                 </div>
             </div>
             <!-- Cards -->
             <div class="row">
-                <div class="col-3 mb-4" v-for="quote in quotesData">
+                <div class="col-12 col-md-4 col-lg-3 mb-4" v-for="quote in quotesData">
                     <div class="custom-card card-shadow card">
                         <div class="card-body d-flex align-items-start flex-column">
                             <h6 class="card-subtitle mb-2 green-font font-weight-bold">{{quote.created_at | moment('DD.MM.YYYY')}}</h6>
