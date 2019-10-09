@@ -5,6 +5,9 @@
  */
 
 require('./bootstrap');
+// Constants
+import constants from "./constants";
+window.constants = constants;
 
 // Vue
 window.Vue = require('vue');

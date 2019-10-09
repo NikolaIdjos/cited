@@ -48,10 +48,10 @@
              * Submit, close modal and emit next function
              */
             submit() {
-                if (this.subscriberData.status == 'ACTIVE') {
-                    this.subscriberData.status = 'INACTIVE'
+                if (this.subscriberData.status == window.constants.ACTIVE_STATUS) {
+                    this.subscriberData.status = window.constants.INACTIVE_STATUS
                 } else {
-                    this.subscriberData.status = 'ACTIVE'
+                    this.subscriberData.status = window.constants.ACTIVE_STATUS
                 }
                 axios.put('/admin/subscribers/' + this.subscriberData.id, this.subscriberData).then((response) => {
                     this.$emit('updated', true);

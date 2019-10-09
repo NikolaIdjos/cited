@@ -50,11 +50,11 @@
             submit() {
                 axios.post('/subscribers', this.subscriberData).then((response) => {
                     this.subscriberData = response.data.entity;
-                    if (this.subscriberData.status == 'UNPAID') {
+                    if (this.subscriberData.status == window.constants.UNPAID_STATUS) {
                         console.log('unpaid')
-                    } else if (this.subscriberData.status == 'ACTIVE'){
+                    } else if (this.subscriberData.status == window.constants.ACTIVE_STATUS){
                         this.$refs.changeStatusModal.open(response.data.entity);
-                    } else if (this.subscriberData.status == 'INACTIVE'){
+                    } else if (this.subscriberData.status == window.constants.INACTIVE_STATUS){
                         this.$refs.changeStatusModal.open(response.data.entity);
                     } else {
                         console.log('no acc')
