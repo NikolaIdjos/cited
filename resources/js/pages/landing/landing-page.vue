@@ -36,6 +36,7 @@
         </div>
         <!-- Components -->
         <change-status-mail ref="changeStatusModal"></change-status-mail>
+        <payment-modal ref="paymentModal"></payment-modal>
     </div>
 </template>
 
@@ -59,7 +60,7 @@
                     // Open modal
                     if (this.subscriberData.status == window.constants.UNPAID_STATUS) {
                         // If user is unpaid
-                        console.log('unpaid')
+                        this.$refs.paymentModal.open(response.data.entity);
                     } else if (this.subscriberData.status == window.constants.ACTIVE_STATUS){
                         // If user is active
                         this.$refs.changeStatusModal.open(response.data.entity);
@@ -68,7 +69,7 @@
                         this.$refs.changeStatusModal.open(response.data.entity);
                     } else {
                         // If user does not exist
-                        console.log('no acc')
+                        this.$refs.paymentModal.open(response.data.entity);
                     }
                 });
             },

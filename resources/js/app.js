@@ -59,6 +59,7 @@ Vue.component('show-quote-modal', require('./components/modals/quote/show-quote-
 Vue.component('update-quote-modal', require('./components/modals/quote/update-quote-modal').default);
 Vue.component('change-subscriber-status', require('./components/modals/subsriber/change-subscriber-status').default);
 Vue.component('change-status-mail', require('./components/modals/subsriber/change-status-mail').default);
+Vue.component('payment-modal', require('./components/modals/subsriber/payment-modal').default);
 
 // Interceptor for toastr messages
 window.axios.interceptors.response.use(function (response) {
