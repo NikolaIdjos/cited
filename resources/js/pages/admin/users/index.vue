@@ -31,9 +31,9 @@
                                         <div class="form-group col-12 col-md-4 mt-2 mt-md-0">
                                             <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.status">
                                                 <option :value="null" disabled selected hidden>Status</option>
-                                                <option :value="constants.ACTIVE_STATUS">{{constants.ACTIVE_STATUS}}</option>
-                                                <option :value="constants.INACTIVE_STATUS">{{constants.INACTIVE_STATUS}}</option>
-                                                <option :value="constants.UNPAID_STATUS">{{constants.UNPAID_STATUS}}</option>
+                                                <option :value="$constants.ACTIVE_STATUS">{{$constants.ACTIVE_STATUS}}</option>
+                                                <option :value="$constants.INACTIVE_STATUS">{{$constants.INACTIVE_STATUS}}</option>
+                                                <option :value="$constants.UNPAID_STATUS">{{$constants.UNPAID_STATUS}}</option>
                                             </select>
                                         </div>
                                     </div>

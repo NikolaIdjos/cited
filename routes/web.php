@@ -29,6 +29,7 @@ Route::get('/', 'HomeController@landing');
 Route::get('status/subscribers/{subscriber}/{status}', 'SubscriberController@updateStatus');
 Route::post('/subscribers', 'SubscriberController@store');
 Route::get('/mail/subscribers/{subscriber}', 'SubscriberController@sendMail');
+Route::get('/active/subscribers/{subscriber}', 'SubscriberController@updateActiveStatus');
 /**
  * Auth middleware and prefix
  */

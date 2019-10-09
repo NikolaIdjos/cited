@@ -145,6 +145,28 @@ class SubscriberController extends Controller
     }
 
     /**
+     * User Payed.
+     *
+     * @param  \App\Subscriber  $subscriber
+     * @param  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function updateActiveStatus(Subscriber $subscriber)
+    {
+        // Update status to Active
+        $subscriber->status = Constant::ACTIVE_STATUS;
+        // Update
+        if ($subscriber->update()) {
+            // Send mail
+            Mail::to($subscriber->email)->queue((new WelcomeSubscriberMail($subscriber))->onQueue('emails'));
+            // Successfully response
+            return response()->custom(200, "Subscriber activated!", $subscriber);
+        }
+        // Error response
+        return response()->custom(400, "Subscriber not activated!", $subscriber);
+    }
+
+    /**
      * Send mail.
      *
      * @param  \App\Subscriber  $subscriber

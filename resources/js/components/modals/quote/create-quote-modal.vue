@@ -62,7 +62,7 @@
                     this.showModal = false;
                     // Clear data
                     this.quoteData = {};
-                }).error((error) => {
+                }).catch((error) => {
                     // Close modal
                     this.showModal = false;
                     // Clear data

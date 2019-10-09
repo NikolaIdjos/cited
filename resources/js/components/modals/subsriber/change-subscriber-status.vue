@@ -55,10 +55,10 @@
              */
             submit() {
                 // Change status
-                if (this.subscriberData.status == window.constants.ACTIVE_STATUS) {
-                    this.subscriberData.status = window.constants.INACTIVE_STATUS
+                if (this.subscriberData.status == this.$constants.ACTIVE_STATUS) {
+                    this.subscriberData.status = this.$constants.INACTIVE_STATUS
                 } else {
-                    this.subscriberData.status = window.constants.ACTIVE_STATUS
+                    this.subscriberData.status = this.$constants.ACTIVE_STATUS
                 }
                 // Send request
                 axios.put('/admin/subscribers/' + this.subscriberData.id, this.subscriberData).then((response) => {
@@ -66,7 +66,7 @@
                     this.$emit('updated', true);
                     // Close modal
                     this.showModal = false;
-                }).error((error) => {
+                }).catch((error) => {
                     // Close modal
                     this.showModal = false;
                 });

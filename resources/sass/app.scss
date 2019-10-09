@@ -8,6 +8,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// General
 textarea {
     resize: none;
 }
@@ -28,17 +29,6 @@ input:focus, textarea:focus, select:focus {
 }
 .cursor-pointer {
     cursor: pointer;
-}
-.navbar-laravel {
-    border-bottom: 1px solid #e0e0e0;
-}
-.logo i {
-    font-size: 150px;
-    color: $green;
-}
-.logo-nav i {
-    font-size: 50px;
-    color: $green;
 }
 .btn-green {
     background-color: $green;
@@ -80,6 +70,19 @@ input:focus, textarea:focus, select:focus {
 .white-color {
     color: $white;
 }
+// Navbar
+.navbar-laravel {
+    border-bottom: 1px solid #e0e0e0;
+}
+.logo i {
+    font-size: 150px;
+    color: $green;
+}
+.logo-nav i {
+    font-size: 50px;
+    color: $green;
+}
+// Custom
 .custom-group-input {
     border: 1px solid #38c172;
     border-radius: 6px;
@@ -130,7 +133,6 @@ input:focus, textarea:focus, select:focus {
     border-top: 1px solid #e2e2e2;
     border-bottom: 1px solid #e2e2e2;
 }
-
 /* The Close Button */
 .close {
     color: #aaa;
@@ -145,7 +147,7 @@ input:focus, textarea:focus, select:focus {
     text-decoration: none;
     cursor: pointer;
 }
-
+// Media query
 @media only screen and (max-width: 1000px) {
     .custom-modal-content {
         width: 100%;

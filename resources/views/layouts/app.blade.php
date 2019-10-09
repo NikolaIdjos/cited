@@ -38,11 +38,11 @@
                     </li>
                 </ul>
 
-                <a id="navbarDropdown" data-target="#userDropdown" class="nav-link dropdown-toggle a-green font-16" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" data-target="#userDropdown" class="nav-link dropdown-toggle a-green font-16 p-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
-                <div class="form-inline dropdown-menu dropdown-menu-right" id="userDropdown" aria-labelledby="navbarDropdown">
+                <div class="form-inline dropdown-menu dropdown-menu-left dropdown-menu-sm-right" id="userDropdown" aria-labelledby="navbarDropdown">
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">

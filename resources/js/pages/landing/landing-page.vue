@@ -19,8 +19,8 @@
                             and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
                         <form v-on:submit.prevent="submit">
-                            <div class="custom-group-input input-group input-group-lg mt-5">
-                                <input v-model="subscriberData.email" type="email" class="form-control" placeholder="Your email" required>
+                            <div class="z-index-0 custom-group-input input-group input-group-lg mt-5">
+                                <input v-model="subscriberData.email" style="z-index:0" type="email" class="form-control" placeholder="Your email" required>
                                 <div class="input-group-append">
                                     <button type="submit" class="input-group-text green-bg cursor-pointer white-color">Subscribe</button>
                                 </div>
@@ -58,13 +58,13 @@
                     // Get data
                     this.subscriberData = response.data.entity;
                     // Open modal
-                    if (this.subscriberData.status == window.constants.UNPAID_STATUS) {
+                    if (this.subscriberData.status == this.$constants.UNPAID_STATUS) {
                         // If user is unpaid
                         this.$refs.paymentModal.open(response.data.entity);
-                    } else if (this.subscriberData.status == window.constants.ACTIVE_STATUS){
+                    } else if (this.subscriberData.status == this.$constants.ACTIVE_STATUS){
                         // If user is active
                         this.$refs.changeStatusModal.open(response.data.entity);
-                    } else if (this.subscriberData.status == window.constants.INACTIVE_STATUS){
+                    } else if (this.subscriberData.status == this.$constants.INACTIVE_STATUS){
                         // If user is inactive
                         this.$refs.changeStatusModal.open(response.data.entity);
                     } else {
