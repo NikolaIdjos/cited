@@ -12,7 +12,7 @@ window.Vue = require('vue');
 // Constants
 import constants from "./constants";
 window.constants = constants;
-Vue.prototype.$constants = constants
+Vue.prototype.$constants = constants;
 
 // Moment
 const moment = require('moment');

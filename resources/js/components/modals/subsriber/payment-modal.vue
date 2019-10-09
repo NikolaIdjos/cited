@@ -11,7 +11,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
-                    <p class="font-weight-bold green-font">Pay {{$constants.PRICE_STRING}}&#8364; to use application and recieve quotes!</p>
+                    <p class="font-weight-bold green-font">Pay {{$constants.PRICE_STRING}}&#8364; to use application and receive quotes!</p>
                     <div id="paypal-button-container"></div>
                 </div>
                 <!-- Modal footer -->
