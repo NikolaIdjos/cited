@@ -6,12 +6,24 @@ use App\Http\Requests\Subscriber\StoreSubscriberRequest;
 use App\Http\Requests\Subscriber\UpdateSubscriberRequest;
 use App\Mail\Subscriber\SubscriberDeactivatedMail;
 use App\Mail\Subscriber\SubscriberReactivatedMail;
+use App\Mail\Subscriber\WelcomeSubscriberMail;
 use App\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class SubscriberController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('unpaid')->only(['update', 'updateStatus']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +49,6 @@ class SubscriberController extends Controller
         if ($filters['status']) {
             $subscribers->where('status', $filters['status']);
         }
-        // If type is selected
-        if ($filters['type']) {
-            $subscribers->where('type', $filters['type']);
-        }
         // Successfully response
         return response()->custom(200, "Subscribers!", $subscribers->orderBy('id', 'desc')->paginate(10));
     }
@@ -53,7 +61,24 @@ class SubscriberController extends Controller
      */
     public function store(StoreSubscriberRequest $request)
     {
-        //
+        // Find subscriber
+        $subscriber = Subscriber::where('email', $request->get('email'))->first();
+        // If subscriber does not exist
+        if (!$subscriber) {
+            // Create new subscriber
+            $subscriber = new Subscriber;
+            // Fill data
+            $subscriber->fill($request->all());
+            // Save subscriber
+            if ($subscriber->save()) {
+                // Successfully response
+                return response()->custom(200, "Subscriber created!", $subscriber);
+            };
+            // Error response
+            return response()->custom(400, "Subscriber not created!", null);
+        }
+        // Subscriber profile exist response
+        return response()->custom(200, "Subscriber already exist!", $subscriber);
     }
 
     /**
@@ -103,20 +128,16 @@ class SubscriberController extends Controller
      */
     public function updateStatus(Subscriber $subscriber)
     {
-        // If request has status fill it
+        // Change status and send mail
         if ($subscriber->status == 'ACTIVE') {
             $subscriber->status = 'INACTIVE';
+            Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
         } else {
             $subscriber->status = 'ACTIVE';
+            Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
         }
         // Update subscriber
         if ($subscriber->update()) {
-            // Send email
-            if ($subscriber->status == 'ACTIVE') {
-                Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
-            } else {
-                Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
-            }
             // Successfully response
             return redirect('/');
         }

@@ -22,6 +22,11 @@ Auth::routes([
  */
 Route::get('/', 'HomeController@landing');
 /**
+ * Subscribers
+ */
+Route::get('status/subscribers/{subscriber}', 'SubscriberController@updateStatus');
+Route::resource('/subscribers', 'SubscriberController')->only(['store']);
+/**
  * Auth middleware and prefix
  */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
@@ -41,7 +46,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('index/subscribers', 'SubscriberController@indexData');
     Route::resource('/subscribers', 'SubscriberController')->only(['index', 'update']);
 });
-/**
- * Mails
- */
-Route::get('status/subscribers/{subscriber}', 'SubscriberController@updateStatus');

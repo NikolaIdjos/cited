@@ -30,12 +30,6 @@
                                                     <option :value="null" disabled selected hidden>Status</option>
                                                     <option value="ACTIVE">ACTIVE</option>
                                                     <option value="INACTIVE">INACTIVE</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-12 col-md-4">
-                                                <select @change="$refs.customPagination.fetchData(1, searchKeyword, filters)" class="form-control" v-model="filters.type">
-                                                    <option :value="null" disabled selected hidden>Type</option>
-                                                    <option value="PAID">PAID</option>
                                                     <option value="UNPAID">UNPAID</option>
                                                 </select>
                                             </div>
@@ -47,16 +41,15 @@
                                             <tr>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">EMAIL</th>
-                                                <th class="text-center">TYPE</th>
                                                 <th class="text-center">STATUS</th>
                                             </tr>
                                             <tr v-for="subscriber in subscribersData">
                                                 <td class="pt-3-half">{{subscriber.id}}</td>
                                                 <td class="pt-3-half">{{subscriber.email}}</td>
-                                                <td class="pt-3-half">{{subscriber.type}}</td>
                                                 <td class="pt-3-half">
                                                     <h4>
-                                                        <span v-if="subscriber.status == 'ACTIVE'" class="badge badge-success cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
+                                                        <span v-if="subscriber.status == 'UNPAID'" class="badge badge-secondary">{{subscriber.status}}</span>
+                                                        <span v-else-if="subscriber.status == 'ACTIVE'" class="badge badge-success cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
                                                         <span v-else class="badge badge-danger cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
                                                     </h4>
                                                 </td>
@@ -103,7 +96,6 @@
                 searchKeyword: '',
                 filters: {
                     status: null,
-                    type: null,
                 },
             }
         },

@@ -14,7 +14,6 @@ class Subscriber extends Model
     protected $fillable = [
         'email',
         'status',
-        'type',
     ];
 
     /**
@@ -23,9 +22,9 @@ class Subscriber extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeActiveAndPaid($query)
+    public function scopeActive($query)
     {
-        return $query->where('status', 'ACTIVE')->where('type', 'PAID');
+        return $query->where('status', 'ACTIVE');
     }
 
     /**

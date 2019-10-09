@@ -43,7 +43,7 @@ class SendQuotesCommand extends Command
     {
         // Find subscribers
         $subscribers = Subscriber::with('lastQuote')
-            ->activeAndPaid()
+            ->active()
             ->get();
         // Foreach subscribers
         foreach ($subscribers as $subscriber) {

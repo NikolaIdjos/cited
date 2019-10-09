@@ -17,12 +17,14 @@
                             It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
                             and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
-                        <div class="custom-group-input input-group input-group-lg mt-5">
-                            <input type="text" class="form-control" placeholder="Your email">
-                            <div class="input-group-append">
-                                <span class="input-group-text green-bg cursor-pointer white-color">Subscribe</span>
+                        <form v-on:submit.prevent="submit">
+                            <div class="custom-group-input input-group input-group-lg mt-5">
+                                <input v-model="subscriberData.email" type="email" class="form-control" placeholder="Your email">
+                                <div class="input-group-append">
+                                    <button type="submit" class="input-group-text green-bg cursor-pointer white-color">Subscribe</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-6">
@@ -37,11 +39,15 @@
     export default {
         data () {
             return {
-                //
+                subscriberData: {}
             }
         },
         methods: {
-            //
+            submit() {
+                axios.post('/subscribers', this.subscriberData).then((response) => {
+                    this.subscriberData = {};
+                });
+            },
         }
     }
 </script>

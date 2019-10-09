@@ -16,8 +16,7 @@ class CreateSubscribersTable extends Migration
         Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email')->unique();
-            $table->enum('status', ['ACTIVE', 'INACTIVE']);
-            $table->enum('type', ['PAID', 'UNPAID']);
+            $table->enum('status', ['ACTIVE', 'INACTIVE', 'UNPAID'])->default('UNPAID');
             $table->timestamps();
         });
     }
