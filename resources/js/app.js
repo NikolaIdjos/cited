@@ -50,11 +50,12 @@ Vue.component('users-index', require('./pages/admin/users/index').default);
 // Pagination
 Vue.component('custom-pagination', require('./components/paginations/pagination').default);
 // Modals
-Vue.component('create-quote-modal', require('./components/modals/create-quote-modal').default);
-Vue.component('delete-modal', require('./components/modals/delete-modal').default);
-Vue.component('show-quote-modal', require('./components/modals/show-quote-modal').default);
-Vue.component('update-quote-modal', require('./components/modals/update-quote-modal').default);
-Vue.component('change-subscriber-status', require('./components/modals/change-subscriber-status').default);
+Vue.component('create-quote-modal', require('./components/modals/quote/create-quote-modal').default);
+Vue.component('delete-modal', require('./components/modals/quote/delete-modal').default);
+Vue.component('show-quote-modal', require('./components/modals/quote/show-quote-modal').default);
+Vue.component('update-quote-modal', require('./components/modals/quote/update-quote-modal').default);
+Vue.component('change-subscriber-status', require('./components/modals/subsriber/change-subscriber-status').default);
+Vue.component('change-status-mail', require('./components/modals/subsriber/change-status-mail').default);
 
 // Interceptor for toastr messages
 window.axios.interceptors.response.use(function (response) {

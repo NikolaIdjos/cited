@@ -24,8 +24,9 @@ Route::get('/', 'HomeController@landing');
 /**
  * Subscribers
  */
-Route::get('status/subscribers/{subscriber}', 'SubscriberController@updateStatus');
+Route::get('status/subscribers/{subscriber}/{status}', 'SubscriberController@updateStatus');
 Route::resource('/subscribers', 'SubscriberController')->only(['store']);
+Route::get('/mail/subscribers/{subscriber}', 'SubscriberController@sendMail');
 /**
  * Auth middleware and prefix
  */

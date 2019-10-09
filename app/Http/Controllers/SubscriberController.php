@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Constant;
 use App\Http\Requests\Subscriber\StoreSubscriberRequest;
 use App\Http\Requests\Subscriber\UpdateSubscriberRequest;
 use App\Mail\Subscriber\SubscriberDeactivatedMail;
@@ -104,15 +105,11 @@ class SubscriberController extends Controller
         // If request has status fill it
         if ($request->has('status')) {
             $subscriber->status = $request->get('status');
-            // Send email
-            if ($request->get('status') == 'ACTIVE') {
-                Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
-            } else {
-                Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
-            }
         }
         // Update subscriber
         if ($subscriber->update()) {
+            // Send email
+            sendMails($subscriber);
             // Successfully response
             return response()->custom(200, "Subscriber updated!", $subscriber);
         }
@@ -124,25 +121,41 @@ class SubscriberController extends Controller
      * Update status.
      *
      * @param  \App\Subscriber  $subscriber
+     * @param  $status
      * @return \Illuminate\Http\Response
      */
-    public function updateStatus(Subscriber $subscriber)
+    public function updateStatus(Subscriber $subscriber, $status)
     {
-        // Change status and send mail
-        if ($subscriber->status == 'ACTIVE') {
-            $subscriber->status = 'INACTIVE';
-            Mail::to($subscriber->email)->queue((new SubscriberDeactivatedMail($subscriber))->onQueue('emails'));
-        } else {
-            $subscriber->status = 'ACTIVE';
-            Mail::to($subscriber->email)->queue((new SubscriberReactivatedMail($subscriber))->onQueue('emails'));
+        // Change status
+        if ($status == Constant::ACTIVE_STATUS) {
+            $subscriber->status = Constant::ACTIVE_STATUS;
+        } elseif ($status == Constant::INACTIVE_STATUS) {
+            $subscriber->status = Constant::INACTIVE_STATUS;
         }
         // Update subscriber
         if ($subscriber->update()) {
+            // Send email
+            sendMails($subscriber);
             // Successfully response
             return redirect('/');
         }
         // Error response
         return redirect('/');
+    }
+
+    /**
+     * Send mail.
+     *
+     * @param  \App\Subscriber  $subscriber
+     * @param  $status
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(Subscriber $subscriber)
+    {
+        // Send email
+        sendMails($subscriber);
+        // Successfully response
+        return response()->custom(200, "Mail!", $subscriber);
     }
 
     /**

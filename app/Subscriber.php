@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\Constant;
 use Illuminate\Database\Eloquent\Model;
 
 class Subscriber extends Model
@@ -24,7 +25,7 @@ class Subscriber extends Model
      */
     public function scopeActive($query)
     {
-        return $query->where('status', 'ACTIVE');
+        return $query->where('status', Constant::ACTIVE_STATUS);
     }
 
     /**

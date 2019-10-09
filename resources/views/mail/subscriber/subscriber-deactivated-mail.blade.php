@@ -4,7 +4,7 @@
     <br>
     If you would like to activate your account press the button below.
 </center>
-@component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id, 'color' => 'success'])
+@component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id.'/ACTIVE', 'color' => 'success'])
     Reactivate
 @endcomponent
 <center>

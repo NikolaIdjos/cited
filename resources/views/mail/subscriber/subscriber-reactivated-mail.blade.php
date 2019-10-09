@@ -2,7 +2,7 @@
 <center>
     Your account is activated! If you would like to deactivate your account press the button below.
 </center>
-@component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id, 'color' => 'success'])
+@component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id.'/INACTIVE', 'color' => 'success'])
     Deactivate
 @endcomponent
 <center>

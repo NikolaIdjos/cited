@@ -19,7 +19,7 @@
                         </p>
                         <form v-on:submit.prevent="submit">
                             <div class="custom-group-input input-group input-group-lg mt-5">
-                                <input v-model="subscriberData.email" type="email" class="form-control" placeholder="Your email">
+                                <input v-model="subscriberData.email" type="email" class="form-control" placeholder="Your email" required>
                                 <div class="input-group-append">
                                     <button type="submit" class="input-group-text green-bg cursor-pointer white-color">Subscribe</button>
                                 </div>
@@ -32,6 +32,7 @@
                 </div>
             </div>
         </div>
+        <change-status-mail ref="changeStatusModal"></change-status-mail>
     </div>
 </template>
 
@@ -39,16 +40,25 @@
     export default {
         data () {
             return {
-                subscriberData: {}
+                subscriberData: {},
             }
         },
         methods: {
             /**
-             * Submit and create subscriber
+             * Submit and create subscriber or open modal for reactivate
              */
             submit() {
                 axios.post('/subscribers', this.subscriberData).then((response) => {
-                    this.subscriberData = {};
+                    this.subscriberData = response.data.entity;
+                    if (this.subscriberData.status == 'UNPAID') {
+                        console.log('unpaid')
+                    } else if (this.subscriberData.status == 'ACTIVE'){
+                        this.$refs.changeStatusModal.open(response.data.entity);
+                    } else if (this.subscriberData.status == 'INACTIVE'){
+                        this.$refs.changeStatusModal.open(response.data.entity);
+                    } else {
+                        console.log('no acc')
+                    }
                 });
             },
         }
