@@ -51,11 +51,11 @@
                                                 <td class="pt-3-half">{{subscriber.id}}</td>
                                                 <td class="pt-3-half">{{subscriber.email}}</td>
                                                 <td class="pt-3-half">
-                                                    <h4>
-                                                        <span v-if="subscriber.status == 'UNPAID'" class="badge badge-secondary">{{subscriber.status}}</span>
-                                                        <span v-else-if="subscriber.status == 'ACTIVE'" class="badge badge-success cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
-                                                        <span v-else class="badge badge-danger cursor-pointer" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
-                                                    </h4>
+                                                    <h5>
+                                                        <span v-if="subscriber.status == 'UNPAID'" class="badge badge-secondary p-2">{{subscriber.status}}</span>
+                                                        <span v-else-if="subscriber.status == 'ACTIVE'" class="badge badge-success cursor-pointer p-2" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
+                                                        <span v-else class="badge badge-danger cursor-pointer p-2" @click="updateStatus(subscriber)">{{subscriber.status}}</span>
+                                                    </h5>
                                                 </td>
                                             </tr>
                                         </table>

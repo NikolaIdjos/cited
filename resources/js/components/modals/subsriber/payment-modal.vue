@@ -56,16 +56,7 @@
                     },
                     onApprove: function (data, actions) {
                         return actions.order.capture().then(function (details) {
-                            // Call your server to save the transaction
-                            return fetch('/paypal-transaction-complete', {
-                                method: 'post',
-                                headers: {
-                                    'content-type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    orderID: data.orderID
-                                })
-                            });
+                            // Call server to save the transaction
                         });
                     }
                 }).render('#paypal-button-container');
