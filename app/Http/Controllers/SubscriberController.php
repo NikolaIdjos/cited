@@ -75,10 +75,7 @@ class SubscriberController extends Controller
             // Save subscriber
             if ($subscriber->save()) {
                 // Successfully response
-                return response()->custom(200, "Subscriber created!", [
-                    'subscriber' => $subscriber,
-                    'url' => Url::signedRoute('change-status-active', ['subscriber' => $subscriber->id])
-                ]);
+                return response()->custom(200, "Subscriber created!", $subscriber);
             };
             // Error response
             return response()->custom(400, "Subscriber not created!", null);

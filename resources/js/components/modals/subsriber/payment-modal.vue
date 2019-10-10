@@ -30,8 +30,7 @@
             return {
                 showModal: false,
                 constants: this.$constants,
-                subscriberData: {},
-                url: null
+                subscriberData: {}
             }
         },
         mounted() {
@@ -60,7 +59,7 @@
                         return actions.order.capture().then( (details) => {
                             // Call server to save the transaction
                             // Send request
-                            axios.get(this.url).then((response) => {
+                            axios.get('/active/subscribers/' + this.subscriberData.id).then((response) => {
                                 // Close modal
                                 this.close();
                                 // Toastr
@@ -80,8 +79,7 @@
              */
             open(data) {
                 // Get data
-                this.subscriberData = data.subscriber;
-                this.url = data.url;
+                this.subscriberData = data;
                 // Open modal
                 this.showModal = true;
                 // Render PayPal element
