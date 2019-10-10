@@ -160,10 +160,10 @@ class SubscriberController extends Controller
             // Send mail
             Mail::to($subscriber->email)->queue((new WelcomeSubscriberMail($subscriber))->onQueue('emails'));
             // Successfully response
-            return response()->custom(200, "Subscriber activated!", $subscriber);
+            return response()->custom(200, "Successfully activated!", $subscriber);
         }
         // Error response
-        return response()->custom(400, "Subscriber not activated!", $subscriber);
+        return response()->custom(400, "Unsuccessfully activated!", $subscriber);
     }
 
     /**

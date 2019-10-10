@@ -11,7 +11,8 @@
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
-                    <p class="font-weight-bold green-font">Pay {{$constants.PRICE_STRING}}&#8364; to use application and receive quotes!</p>
+                    <p class="font-weight-bold green-font">Pay {{$constants.PRICE_STRING}}&#8364; to use application and
+                        receive quotes!</p>
                     <div id="paypal-button-container"></div>
                 </div>
                 <!-- Modal footer -->
@@ -35,7 +36,7 @@
         mounted() {
             // Create script and load it
             let recaptchaScript = document.createElement('script');
-            recaptchaScript.setAttribute('src', 'https://www.paypal.com/sdk/js?client-id='+ this.constants.PAYPAL_CLIENT_ID +'&currency=EUR');
+            recaptchaScript.setAttribute('src', 'https://www.paypal.com/sdk/js?client-id=' + this.constants.PAYPAL_CLIENT_ID + '&currency=EUR');
             document.head.appendChild(recaptchaScript);
         },
         methods: {
@@ -44,26 +45,30 @@
              */
             renderPayPalElement() {
                 paypal.Buttons({
-                    createOrder: function (data, actions) {
+                    createOrder: (data, actions) => {
                         return actions.order.create({
                             purchase_units: [{
                                 amount: {
-                                    value: window.constants.PRICE,
+                                    value: this.$constants.PRICE,
                                 },
                                 currency: 'EUR'
                             }]
                         });
                     },
-                    onApprove: function (data, actions) {
-                        return actions.order.capture().then(function (details) {
+                    onApprove: (data, actions) => {
+                        return actions.order.capture().then( (details) => {
                             // Call server to save the transaction
                             // Send request
-                            axios.get('/active/subscribers/' + window.payer.id).then((response) => {
+                            axios.get('/active/subscribers/' + this.subscriberData.id).then((response) => {
                                 // Close modal
-                                // this.close();
+                                this.close();
+                                // Toastr
+                                window.toastr.success(response.data.message);
                             }).catch((error) => {
                                 // Close modal
-                                // this.close();
+                                this.close();
+                                // Toastr
+                                window.toastr.error(response.data.message);
                             });
                         });
                     }
@@ -74,7 +79,6 @@
              */
             open(data) {
                 // Get data
-                window.payer = data;
                 this.subscriberData = data;
                 // Open modal
                 this.showModal = true;
