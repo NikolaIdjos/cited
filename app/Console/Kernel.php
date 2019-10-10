@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:quote')->dailyAt('12:00');
+        // Every minute is for test change it to dailyAt('12:00')
+        $schedule->command('send:quote')->everyMinute();
     }
 
     /**

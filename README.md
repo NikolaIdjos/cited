@@ -20,6 +20,8 @@ ___
 
 `php artisan queue:work --queue=default,emails`
 
+To test command for quote delivery run -> `php artisan send:quote`
+
 ___
 
 
