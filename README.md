@@ -2,11 +2,7 @@
 
 Copy .env.example to .env
 
-Setup database in .env and create db
-
-`DB_DATABASE=cited`
-`DB_USERNAME=root`
-`DB_PASSWORD=root`
+Setup data in .env and create db. You will see the indications in the file.
 
 ___
 
@@ -23,4 +19,15 @@ ___
 `npm run dev`
 
 `php artisan queue:work --queue=default,emails`
+
+___
+
+
+Go to url `{base_url}/login` to access to login page.
+
+Test account:
+
+Email: `admin@demo.com`
+
+Password: `@123qwer`
 
