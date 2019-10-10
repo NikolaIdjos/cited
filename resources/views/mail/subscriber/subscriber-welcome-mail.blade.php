@@ -6,7 +6,7 @@
     <br>
     You will receive new quotes every day.
 </center>
-@component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id, 'color' => 'success'])
+@component('mail::button', ['url' =>  $url, 'color' => 'success'])
     Deactivate
 @endcomponent
 <center>

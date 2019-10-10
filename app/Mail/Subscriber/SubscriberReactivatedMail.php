@@ -7,12 +7,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class SubscriberReactivatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subscriber;
+    public $url;
 
     /**
      * Create a new message instance.
@@ -23,6 +25,7 @@ class SubscriberReactivatedMail extends Mailable
     public function __construct(Subscriber $subscriber)
     {
         $this->subscriber = $subscriber;
+        $this->url = Url::signedRoute('change-status-mail', ['subscriber' => $subscriber->id, 'status' => 'INACTIVE']);
     }
 
     /**

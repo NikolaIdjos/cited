@@ -26,10 +26,10 @@ Route::get('/', 'HomeController@landing');
 /**
  * Subscribers
  */
-Route::get('status/subscribers/{subscriber}/{status}', 'SubscriberController@updateStatus');
+Route::get('status/subscribers/{subscriber}/{status}', 'SubscriberController@updateStatus')->name('change-status-mail')->middleware('signed');
 Route::post('/subscribers', 'SubscriberController@store');
 Route::get('/mail/subscribers/{subscriber}', 'SubscriberController@sendMail');
-Route::get('/active/subscribers/{subscriber}', 'SubscriberController@updateActiveStatus');
+Route::get('/active/subscribers/{subscriber}', 'SubscriberController@updateActiveStatus')->name('change-status-active')->middleware('signed');
 /**
  * Auth middleware and prefix
  */

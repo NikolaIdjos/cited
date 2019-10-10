@@ -11,6 +11,7 @@ use App\Mail\Subscriber\WelcomeSubscriberMail;
 use App\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class SubscriberController extends Controller
@@ -74,7 +75,10 @@ class SubscriberController extends Controller
             // Save subscriber
             if ($subscriber->save()) {
                 // Successfully response
-                return response()->custom(200, "Subscriber created!", $subscriber);
+                return response()->custom(200, "Subscriber created!", [
+                    'subscriber' => $subscriber,
+                    'url' => Url::signedRoute('change-status-active', ['subscriber' => $subscriber->id])
+                ]);
             };
             // Error response
             return response()->custom(400, "Subscriber not created!", null);
