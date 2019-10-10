@@ -17,15 +17,15 @@ class SubscribersTableSeeder extends Seeder
         // Array (statuses)
         $status = ['ACTIVE', 'INACTIVE', 'UNPAID'];
         // Save data
-//        for ($i = 0; $i <= 40; $i++) {
-//           Subscriber::create([
-//                'email' => $faker->email(),
-//                'status' => $status[rand(0,2)],
-//            ]);
-//        }
+        for ($i = 0; $i <= 40; $i++) {
+           Subscriber::create([
+                'email' => $faker->email(),
+                'status' => $status[rand(0,2)],
+            ]);
+        }
         // My acc
         Subscriber::create([
-            'email' => 'nikolaidjos@gmail.com',
+            'email' => 'nikolaidjos1@gmail.com',
             'status' => 'ACTIVE',
         ]);
     }
