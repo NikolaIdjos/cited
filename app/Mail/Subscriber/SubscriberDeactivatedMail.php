@@ -37,6 +37,6 @@ class SubscriberDeactivatedMail extends Mailable
     {
         return $this->markdown('mail.subscriber.subscriber-deactivated-mail')
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Your account is deactivated!');
+            ->subject(__('mail.deactivatedAcc'));
     }
 }

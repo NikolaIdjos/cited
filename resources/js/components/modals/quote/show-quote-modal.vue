@@ -7,7 +7,7 @@
                 <!-- Modal header -->
                 <div class="custom-modal-header pb-3">
                     <span class="close" @click="close">&times;</span>
-                    <h3>Single quote</h3>
+                    <h3>{{translate('quotes-page.singleQuote')}}</h3>
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
@@ -15,7 +15,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="custom-modal-footer text-right pt-3">
-                    <button type="button" class="btn btn-secondary" @click="close">Close</button>
+                    <button type="button" class="btn btn-secondary" @click="close">{{translate('general.close')}}</button>
                 </div>
             </div>
         </div>

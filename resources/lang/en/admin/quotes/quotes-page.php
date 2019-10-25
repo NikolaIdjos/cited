@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'unauthorized' => 'Unauthorized!',
-    'login' => 'Login',
-    'logout' => 'Logout',
+    'createQuote' => 'Create quote',
+    'updateQuote' => 'Update quote',
+    'deleteQuote' => 'Delete quote',
+    'singleQuote' => 'Single quote',
+    'deleteQuoteDesc' => 'Are you sure you want to delete this quote?',
 ];

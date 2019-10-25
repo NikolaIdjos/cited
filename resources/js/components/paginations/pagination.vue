@@ -3,7 +3,7 @@
         <ul class="pagination" v-if="data.last_page > 1">
             <!-- Previous page -->
             <li v-if="data.prev_page_url" class="page-item">
-                <a @click="fetchData(data.current_page - 1)" class="page-link a-green" href="javascript:void(0)">Previous</a>
+                <a @click="fetchData(data.current_page - 1)" class="page-link a-green" href="javascript:void(0)">{{translate('pagination.previous')}}</a>
             </li>
             <!-- Lower pages -->
             <li v-for="page in lowerVisiblePages" class="page-item">
@@ -19,7 +19,7 @@
             </li>
             <!-- Next page -->
             <li v-if="data.next_page_url" class="page-item">
-                <a class="page-link a-green" href="javascript:void(0)" @click="fetchData(data.current_page + 1)">Next</a>
+                <a class="page-link a-green" href="javascript:void(0)" @click="fetchData(data.current_page + 1)">{{translate('pagination.next')}}</a>
             </li>
         </ul>
     </div>

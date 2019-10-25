@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\CustomResponseProvider::class,
+        KgBot\LaravelLocalization\LaravelLocalizationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        "ExportLocalization" => "KgBot\\LaravelLocalization\\Facades\\ExportLocalizations",
     ],
 
 ];

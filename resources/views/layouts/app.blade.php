@@ -9,6 +9,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Translate -->
+    <script>
+        window.default_locale = "{{ config('app.lang') }}";
+        window.fallback_locale = "{{ config('app.fallback_locale') }}";
+        window.messages = @json(returnLocalizationMessage());
+    </script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -31,10 +38,10 @@
                 <a class="navbar-brand logo-nav" href="{{ url('/') }}"><i class="fas fa-quote-right"></i></a>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item {{ Request::path() == 'admin/users' ? 'active-bold' : ''  }}">
-                        <a class="nav-link a-green font-16" href="{{url('/admin/users')}}">Users</a>
+                        <a class="nav-link a-green font-16" href="{{url('/admin/users')}}">{{ __('general.users') }}</a>
                     </li>
                     <li class="nav-item {{ Request::path() == 'admin/quotes' ? 'active-bold' : ''  }}">
-                        <a class="nav-link a-green font-16" href="{{url('/admin/quotes')}}">Quotes</a>
+                        <a class="nav-link a-green font-16" href="{{url('/admin/quotes')}}">{{ __('general.quotes') }}</a>
                     </li>
                 </ul>
 
@@ -46,7 +53,7 @@
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('auth.logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

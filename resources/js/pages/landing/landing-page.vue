@@ -10,19 +10,13 @@
                         </div>
                         <h1 class="green-font font-weight-bold">Cited App</h1>
                         <p class="grey-font mt-5">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {{translate('landing-page.landingDesc')}}
                         </p>
                         <form v-on:submit.prevent="submit">
                             <div class="z-index-0 custom-group-input input-group input-group-lg mt-5">
-                                <input v-model="subscriberData.email" style="z-index:0" type="email" class="form-control" placeholder="Your email" required>
+                                <input v-model="subscriberData.email" style="z-index:0" type="email" class="form-control" :placeholder="translate('general.yourEmail')" required>
                                 <div class="input-group-append">
-                                    <button type="submit" class="input-group-text green-bg cursor-pointer white-color">Subscribe</button>
+                                    <button type="submit" class="input-group-text green-bg cursor-pointer white-color">{{translate('general.subscribe')}}</button>
                                 </div>
                             </div>
                         </form>

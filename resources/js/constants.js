@@ -1,8 +1,8 @@
 export default {
     // Subscriber statuses
-    ACTIVE_STATUS: 'ACTIVE',
-    INACTIVE_STATUS: 'INACTIVE',
-    UNPAID_STATUS: 'UNPAID',
+    ACTIVE_STATUS: 'unpaid',
+    INACTIVE_STATUS: 'inactive',
+    UNPAID_STATUS: 'unpaid',
 
     PRICE: 2.00,
     PRICE_STRING: '2.00',

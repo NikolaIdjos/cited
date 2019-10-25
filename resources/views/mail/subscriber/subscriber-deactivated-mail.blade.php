@@ -1,14 +1,14 @@
 @component('mail::message')
 <center>
-    Your account is not active!
+    {{__('mail.activateAcc')}}
     <br>
-    If you would like to activate your account press the button below.
+    {{__('mail.activeAccountBtnDesc')}}
 </center>
 @component('mail::button', ['url' => $url, 'color' => 'success'])
-    Reactivate
+    {{__('mail.activate')}}
 @endcomponent
 <center>
-    Thank You,<br>
+    {{__('general.thankYou')}},<br>
     <b> {{ config('app.name') }}</b>
 </center>
 @endcomponent

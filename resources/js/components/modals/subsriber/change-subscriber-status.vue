@@ -11,13 +11,13 @@
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
-                    <p>Are you sure you want to change status to this subscriber?</p>
+                    <p>{{translate('users-page.changeSubscriberStatus')}}</p>
                 </div>
                 <!-- Modal footer -->
                 <div class="custom-modal-footer text-right pt-3">
                     <form v-on:submit.prevent="submit">
-                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                        <button type="submit" class="btn btn-green">Change status</button>
+                        <button type="button" class="btn btn-secondary" @click="close">{{translate('general.close')}}</button>
+                        <button type="submit" class="btn btn-green">{{translate('users-page.changeStatus')}}</button>
                     </form>
                 </div>
             </div>

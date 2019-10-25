@@ -46,4 +46,14 @@ class Subscriber extends Model
             ->orderBy('pivot_created_at', 'desc')
             ->take(1);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function firstQuote()
+    {
+        return $this->belongsToMany(Quote::class, 'subscriber_quote', 'subscriber_id', 'quote_id')
+            ->withTimestamps()
+            ->take(1);
+    }
 }
