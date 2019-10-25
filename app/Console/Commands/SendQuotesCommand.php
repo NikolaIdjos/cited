@@ -42,7 +42,7 @@ class SendQuotesCommand extends Command
     public function handle()
     {
         // Find subscribers
-        $subscribers = Subscriber::with('quotes')->active()->get();
+        $subscribers = Subscriber::with('quotes')->withCount('quotes')->active()->get();
         $nextQuote = null;
         // Foreach subscribers
         foreach ($subscribers as $subscriber) {
@@ -51,6 +51,8 @@ class SendQuotesCommand extends Command
             // Find last quote or create first quote
             if ($lastQuote) {
                 if ($lastQuote->id > $firstQuote->id) {
+                    $nextQuote = Quote::where('id', '>', $lastQuote->id)->first();
+                } elseif ($subscriber->quotes_count == 1) {
                     $nextQuote = Quote::where('id', '>', $lastQuote->id)->first();
                 }
             } else {

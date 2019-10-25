@@ -61,7 +61,7 @@
                     this.subscriberData.status = this.$constants.ACTIVE_STATUS
                 }
                 // Send request
-                axios.put(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.SUBSCRIBERS_ROUTE + this.subscriberData.id, this.subscriberData).then((response) => {
+                axios.put(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.SUBSCRIBERS_SLASH_ROUTE + this.subscriberData.id, this.subscriberData).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal

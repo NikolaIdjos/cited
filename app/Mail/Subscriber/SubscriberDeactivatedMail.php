@@ -2,6 +2,7 @@
 
 namespace App\Mail\Subscriber;
 
+use App\Helpers\Constant;
 use App\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,7 +26,7 @@ class SubscriberDeactivatedMail extends Mailable
     public function __construct(Subscriber $subscriber)
     {
         $this->subscriber = $subscriber;
-        $this->url = Url::signedRoute('change-status-mail', ['subscriber' => $subscriber->id, 'status' => 'ACTIVE']);
+        $this->url = Url::signedRoute('change-status-mail', ['subscriber' => $subscriber->id, 'status' => Constant::ACTIVE_STATUS]);
     }
 
     /**
