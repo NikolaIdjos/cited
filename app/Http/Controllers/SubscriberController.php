@@ -139,10 +139,10 @@ class SubscriberController extends Controller
             // Send email
             sendMails($subscriber);
             // Successfully response
-            return redirect('/');
+            return redirect(Constant::HOME_PAGE);
         }
         // Error response
-        return redirect('/');
+        return redirect(Constant::HOME_PAGE);
     }
 
     /**

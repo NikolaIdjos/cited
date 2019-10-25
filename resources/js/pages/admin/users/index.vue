@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <!-- Components -->
-                                <custom-pagination ref="customPagination" data-url="/admin/index/subscribers" v-on:pagination="pageChanged($event)" :filters-prop="filters" :search-keyword="searchKeyword"></custom-pagination>
+                                <custom-pagination ref="customPagination" :data-url="this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.SUBSCRIBERS_DATA_ROUTE" v-on:pagination="pageChanged($event)" :filters-prop="filters" :search-keyword="searchKeyword"></custom-pagination>
                                 <change-subscriber-status ref="changeSubscriberStatusModal" v-on:updated="updateData()"></change-subscriber-status>
                             </div>
                             <!--Admins pill-->
@@ -112,7 +112,7 @@
              */
             getUsers() {
                 // Send request
-                axios.get('/admin/index/users').then((response) => {
+                axios.get(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.USERS_DATA_ROUTE).then((response) => {
                     // Change data
                     this.usersData = response.data.entity;
                 });

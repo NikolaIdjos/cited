@@ -32,7 +32,7 @@
                 </div>
             </div>
             <!--Components-->
-            <custom-pagination ref="customPagination" data-url="/admin/index/quotes" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
+            <custom-pagination ref="customPagination" :data-url="this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.QUOTES_DATA_ROUTE" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
             <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal" v-on:updated="updateData()"></create-quote-modal>
             <update-quote-modal ref="updateQuoteModal" v-on:updated="updateData()"></update-quote-modal>
             <delete-modal ref="deleteQuoteModal" v-on:updated="updateData()"></delete-modal>

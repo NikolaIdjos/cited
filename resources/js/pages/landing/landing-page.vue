@@ -48,7 +48,7 @@
              */
             submit() {
                 // Send request
-                axios.post('/subscribers', this.subscriberData).then((response) => {
+                axios.post(this.$constants.SUBSCRIBERS_ROUTE, this.subscriberData).then((response) => {
                     // Get data
                     this.subscriberData = response.data.entity;
                     // Open modal

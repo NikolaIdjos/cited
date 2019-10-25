@@ -55,7 +55,7 @@
              */
             submit() {
                 // Send request
-                axios.post('/admin/quotes', this.quoteData).then((response) => {
+                axios.post(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.QUOTES_ROUTE, this.quoteData).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal

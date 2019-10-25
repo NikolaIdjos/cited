@@ -60,7 +60,7 @@
                         return actions.order.capture().then( (details) => {
                             // Call server to save the transaction
                             // Send request
-                            axios.get('/active/subscribers/' + this.subscriberData.id).then((response) => {
+                            axios.get(this.$constants.STATUS_TO_ACTIVE_ROUTE + this.subscriberData.id).then((response) => {
                                 // Close modal
                                 this.close();
                                 // Toastr

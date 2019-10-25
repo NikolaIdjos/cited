@@ -55,7 +55,7 @@
              */
             submit() {
                 // Send request
-                axios.delete('/admin/quotes/' + this.quoteData.id).then((response) => {
+                axios.delete(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.QUOTES_ROUTE + this.quoteData.id).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal

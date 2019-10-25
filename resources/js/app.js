@@ -14,6 +14,7 @@ import constants from "./constants";
 window.constants = constants;
 Vue.prototype.$constants = constants;
 
+
 // Moment
 const moment = require('moment');
 Vue.use(require('vue-moment'), {

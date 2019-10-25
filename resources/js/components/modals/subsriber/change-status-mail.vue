@@ -58,7 +58,7 @@
              */
             submit() {
                 // Send request
-                axios.get('/mail/subscribers/' + this.subscriberData.id).then((response) => {
+                axios.get(this.$constants.SEND_MAIL_ROUTE + this.subscriberData.id).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal
