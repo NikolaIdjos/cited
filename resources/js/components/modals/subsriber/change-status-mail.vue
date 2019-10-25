@@ -11,16 +11,16 @@
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
-                    <p>You will receive a mail where you can change your status!
+                    <p>{{translate('landing-page.receiveMail')}}
                         <br>
-                        Your current status is: <b class="green-font">{{subscriberData.status}}</b>
+                        {{translate('landing-page.yourStatus')}}<b class="green-font">{{subscriberData.status}}</b>
                     </p>
                 </div>
                 <!-- Modal footer -->
                 <div class="custom-modal-footer text-right pt-3">
                     <form v-on:submit.prevent="submit">
-                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                        <button type="submit" class="btn btn-green">Send mail</button>
+                        <button type="button" class="btn btn-secondary" @click="close">{{translate('general.close')}}</button>
+                        <button type="submit" class="btn btn-green">{{translate('landing-page.sendMail')}}</button>
                     </form>
                 </div>
             </div>
@@ -58,7 +58,7 @@
              */
             submit() {
                 // Send request
-                axios.get('/mail/subscribers/' + this.subscriberData.id).then((response) => {
+                axios.get(this.$constants.SEND_MAIL_ROUTE + this.subscriberData.id).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal

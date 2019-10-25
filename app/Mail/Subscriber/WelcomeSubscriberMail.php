@@ -37,6 +37,6 @@ class WelcomeSubscriberMail extends Mailable
     {
         return $this->markdown('mail.subscriber.subscriber-welcome-mail')
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Welcome!');
+            ->subject(__('mail.welcome'));
     }
 }

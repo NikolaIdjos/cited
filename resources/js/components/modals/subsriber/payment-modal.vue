@@ -30,13 +30,14 @@
             return {
                 showModal: false,
                 constants: this.$constants,
-                subscriberData: {}
+                subscriberData: {},
+                paypal: process.env.MIX_PAYPAL_CLIENT_ID,
             }
         },
         mounted() {
             // Create script and load it
             let recaptchaScript = document.createElement('script');
-            recaptchaScript.setAttribute('src', 'https://www.paypal.com/sdk/js?client-id=' + this.constants.PAYPAL_CLIENT_ID + '&currency=EUR');
+            recaptchaScript.setAttribute('src', 'https://www.paypal.com/sdk/js?client-id=' + this.paypal + '&currency=EUR');
             document.head.appendChild(recaptchaScript);
         },
         methods: {
@@ -59,16 +60,16 @@
                         return actions.order.capture().then( (details) => {
                             // Call server to save the transaction
                             // Send request
-                            axios.get('/active/subscribers/' + this.subscriberData.id).then((response) => {
+                            axios.get(this.$constants.STATUS_TO_ACTIVE_ROUTE + this.subscriberData.id).then((response) => {
                                 // Close modal
                                 this.close();
                                 // Toastr
-                                window.toastr.success(response.data.message);
+                                window.toastr.success(this.translate('general.'+response.data.message));
                             }).catch((error) => {
                                 // Close modal
                                 this.close();
                                 // Toastr
-                                window.toastr.error(response.data.message);
+                                window.toastr.error(this.translate('general.'+response.data.message));
                             });
                         });
                     }

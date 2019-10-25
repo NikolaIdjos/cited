@@ -8,10 +8,10 @@
             <!-- Search -->
             <div class="row mb-5">
                 <div class="input-group col-7 col-md-5 col-lg-4">
-                    <input type="text" v-model="searchKeyword" class="form-control input-lg" placeholder="Search"/>
+                    <input type="text" v-model="searchKeyword" class="form-control input-lg" :placeholder="translate('general.search')"/>
                 </div>
                 <div class="input-group col-5 col-md-3 col-lg-2 ml-auto">
-                    <button @click="$refs.createQuoteModal.open($event)" type="button" class="btn btn-green ml-auto">Create quote</button>
+                    <button @click="$refs.createQuoteModal.open($event)" type="button" class="btn btn-green ml-auto">{{translate('quotes-page.createQuote')}}</button>
                 </div>
             </div>
             <!-- Cards -->
@@ -24,15 +24,15 @@
                                 {{quote.description.length > 100 ? quote.description.substring(0, 100) + '...' : quote.description}}
                             </a>
                             <div class="mt-auto ml-auto">
-                                <a href="javascript:void(0)" class="card-link text-success" @click="updateQuote(quote)">Update</a>
-                                <a href="javascript:void(0)" class="card-link text-danger" @click="deleteQuote(quote)">Delete</a>
+                                <a href="javascript:void(0)" class="card-link text-success" @click="updateQuote(quote)">{{translate('general.update')}}</a>
+                                <a href="javascript:void(0)" class="card-link text-danger" @click="deleteQuote(quote)">{{translate('general.delete')}}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--Components-->
-            <custom-pagination ref="customPagination" data-url="/admin/index/quotes" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
+            <custom-pagination ref="customPagination" :data-url="this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.QUOTES_DATA_ROUTE" v-on:pagination="pageChanged($event)" :search-keyword="searchKeyword"></custom-pagination>
             <create-quote-modal v-on:openCreateQuoteModal="$refs.createQuoteModal.open($event)" ref="createQuoteModal" v-on:updated="updateData()"></create-quote-modal>
             <update-quote-modal ref="updateQuoteModal" v-on:updated="updateData()"></update-quote-modal>
             <delete-modal ref="deleteQuoteModal" v-on:updated="updateData()"></delete-modal>

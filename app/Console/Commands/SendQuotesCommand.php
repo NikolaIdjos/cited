@@ -42,12 +42,19 @@ class SendQuotesCommand extends Command
     public function handle()
     {
         // Find subscribers
-        $subscribers = Subscriber::with('lastQuote')->active()->get();
+        $subscribers = Subscriber::with('quotes')->withCount('quotes')->active()->get();
+        $nextQuote = null;
         // Foreach subscribers
         foreach ($subscribers as $subscriber) {
+            $lastQuote = $subscriber->quotes()->where('subscriber_id', $subscriber->id)->orderBy('pivot_created_at', 'desc')->first();
+            $firstQuote = $subscriber->quotes()->where('subscriber_id', $subscriber->id)->orderBy('pivot_created_at')->first();
             // Find last quote or create first quote
-            if (isset($subscriber->lastQuote[0])) {
-                $nextQuote = Quote::where('id', '>', $subscriber->lastQuote[0]->id)->first();
+            if ($lastQuote) {
+                if ($lastQuote->id > $firstQuote->id) {
+                    $nextQuote = Quote::where('id', '>', $lastQuote->id)->first();
+                } elseif ($subscriber->quotes_count == 1) {
+                    $nextQuote = Quote::where('id', '>', $lastQuote->id)->first();
+                }
             } else {
                 $nextQuote = Quote::first();
             }

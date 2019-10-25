@@ -14,6 +14,7 @@ import constants from "./constants";
 window.constants = constants;
 Vue.prototype.$constants = constants;
 
+
 // Moment
 const moment = require('moment');
 Vue.use(require('vue-moment'), {
@@ -28,6 +29,30 @@ Vue.use(VueToastr2, {
     progressBar: true,
     positionClass: "toast-bottom-right"
 });
+
+// Import lang
+import Lang from 'lang.js';
+// Setup
+const default_locale = window.default_language;
+const fallback_locale = window.fallback_locale;
+const messages = window.messages;
+
+Vue.prototype.trans = new Lang( { messages, locale: default_locale, fallback: fallback_locale } );
+
+Vue.prototype.returnObject = function(key) {
+    var splittedKeys = key.split('.');
+    var nestedObject = this.trans.messages[this.trans.getLocale()];
+    splittedKeys.forEach((item) => {
+        nestedObject = nestedObject[item];
+    });
+    return nestedObject;
+};
+
+Vue.prototype.translate = function(key) {
+    var translation = this.returnObject(key);
+    return translation;
+
+};
 
 /**
  * The following block of code may be used to automatically register your

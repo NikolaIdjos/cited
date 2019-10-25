@@ -4,6 +4,19 @@ use App\Mail\Subscriber\SubscriberDeactivatedMail;
 use App\Mail\Subscriber\SubscriberReactivatedMail;
 use Illuminate\Support\Facades\Mail;
 use App\Helpers\Constant;
+use Illuminate\Support\Facades\Artisan;
+use KgBot\LaravelLocalization\Facades\ExportLocalizations;
+
+
+/**
+ * @return mixed
+ */
+function returnLocalizationMessage() {
+
+    Artisan::call('cache:clear');
+
+    return ExportLocalizations::export()->toArray();
+}
 
 /**
  * Send mail for activate or deactivate

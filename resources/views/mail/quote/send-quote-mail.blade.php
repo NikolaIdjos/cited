@@ -3,10 +3,10 @@
     {{$quote->description}}
 </center>
 @component('mail::button', ['url' => config('app.url').'/status/subscribers/'.$subscriber->id, 'color' => 'success'])
-    Deactivate
+    {{__('mail.deactivate')}}
 @endcomponent
 <center>
-    Thank You,<br>
+    {{__('general.thankYou')}},<br>
     <b> {{ config('app.name') }}</b>
 </center>
 @endcomponent

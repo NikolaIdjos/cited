@@ -1,16 +1,16 @@
 @component('mail::message')
 <center>
-    Welcome!
+    {{__('general.welcome')}}
     <br>
-    Your account is activated!
+    {{__('mail.activatedAcc')}}
     <br>
-    You will receive new quotes every day.
+    {{__('mail.receiveQuotesDesc')}}
 </center>
 @component('mail::button', ['url' =>  $url, 'color' => 'success'])
-    Deactivate
+    {{__('mail.deactivate')}}
 @endcomponent
 <center>
-    Thank You,<br>
+    {{__('general.thankYou')}},<br>
     <b> {{ config('app.name') }}</b>
 </center>
 @endcomponent

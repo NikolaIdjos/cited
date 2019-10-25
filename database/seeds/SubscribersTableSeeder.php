@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Subscriber;
+use App\Helpers\Constant;
 
 class SubscribersTableSeeder extends Seeder
 {
@@ -15,9 +16,9 @@ class SubscribersTableSeeder extends Seeder
         // Faker
         $faker = Faker\Factory::create();
         // Array (statuses)
-        $status = ['ACTIVE', 'INACTIVE', 'UNPAID'];
+        $status = [Constant::ACTIVE_STATUS, Constant::INACTIVE_STATUS, Constant::UNPAID_STATUS];
         // Save data
-        for ($i = 0; $i <= 40; $i++) {
+        for ($i = 0; $i <= 5; $i++) {
            Subscriber::create([
                 'email' => $faker->email(),
                 'status' => $status[rand(0,2)],

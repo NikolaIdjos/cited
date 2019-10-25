@@ -33,17 +33,6 @@ class Subscriber extends Model
      */
     public function quotes()
     {
-        return $this->belongsToMany(Quote::class, 'subscriber_quote', 'subscriber_id', 'quote_id')->withTimestamps()->orderBy('pivot_created_at', 'desc')->take(1);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     */
-    public function lastQuote()
-    {
-        return $this->belongsToMany(Quote::class, 'subscriber_quote', 'subscriber_id', 'quote_id')
-            ->withTimestamps()
-            ->orderBy('pivot_created_at', 'desc')
-            ->take(1);
+        return $this->belongsToMany(Quote::class, 'subscriber_quote', 'subscriber_id', 'quote_id')->withTimestamps()->withPivot('subscriber_id');
     }
 }

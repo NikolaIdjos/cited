@@ -38,6 +38,6 @@ class SendQuoteMail extends Mailable
     {
         return $this->markdown('mail.quote.send-quote-mail')
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('New Quote!');
+            ->subject(__('mail.newQuote'));
     }
 }

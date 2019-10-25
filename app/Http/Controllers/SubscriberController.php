@@ -139,10 +139,10 @@ class SubscriberController extends Controller
             // Send email
             sendMails($subscriber);
             // Successfully response
-            return redirect('/');
+            return redirect(Constant::HOME_PAGE);
         }
         // Error response
-        return redirect('/');
+        return redirect(Constant::HOME_PAGE);
     }
 
     /**
@@ -161,10 +161,10 @@ class SubscriberController extends Controller
             // Send mail
             Mail::to($subscriber->email)->queue((new WelcomeSubscriberMail($subscriber))->onQueue('emails'));
             // Successfully response
-            return response()->custom(200, "Successfully activated!", $subscriber);
+            return response()->custom(200, "successfully", $subscriber);
         }
         // Error response
-        return response()->custom(400, "Unsuccessfully activated!", $subscriber);
+        return response()->custom(400, "unsuccessfully", $subscriber);
     }
 
     /**

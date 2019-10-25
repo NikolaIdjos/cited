@@ -11,13 +11,13 @@
                 </div>
                 <!-- Modal body -->
                 <div class="custom-modal-body text-center py-3 font-16">
-                    <p>Are you sure you want to change status to this subscriber?</p>
+                    <p>{{translate('users-page.changeSubscriberStatus')}}</p>
                 </div>
                 <!-- Modal footer -->
                 <div class="custom-modal-footer text-right pt-3">
                     <form v-on:submit.prevent="submit">
-                        <button type="button" class="btn btn-secondary" @click="close">Close</button>
-                        <button type="submit" class="btn btn-green">Change status</button>
+                        <button type="button" class="btn btn-secondary" @click="close">{{translate('general.close')}}</button>
+                        <button type="submit" class="btn btn-green">{{translate('users-page.changeStatus')}}</button>
                     </form>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     this.subscriberData.status = this.$constants.ACTIVE_STATUS
                 }
                 // Send request
-                axios.put('/admin/subscribers/' + this.subscriberData.id, this.subscriberData).then((response) => {
+                axios.put(this.$constants.ADMIN_ROUTE_PREFIX + this.$constants.SUBSCRIBERS_SLASH_ROUTE + this.subscriberData.id, this.subscriberData).then((response) => {
                     // Emit updates
                     this.$emit('updated', true);
                     // Close modal

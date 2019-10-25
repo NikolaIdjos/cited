@@ -37,6 +37,6 @@ class SubscriberReactivatedMail extends Mailable
     {
         return $this->markdown('mail.subscriber.subscriber-reactivated-mail')
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Your account is reactivated!');
+            ->subject(__('mail.activatedAcc'));
     }
 }

@@ -5,10 +5,10 @@
     If you would like to deactivate your account press the button below.
 </center>
 @component('mail::button', ['url' => $url, 'color' => 'success'])
-    Deactivate
+    {{__('mail.deactivate')}}
 @endcomponent
 <center>
-    Thank You,<br>
+    {{__('general.thankYou')}},<br>
     <b> {{ config('app.name') }}</b>
 </center>
 @endcomponent
